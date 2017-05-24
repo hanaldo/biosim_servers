@@ -1,0 +1,45 @@
+<div id="ui_setting">
+    <form class="form-inline">
+        <div style="margin-top: 20px;" class="form-group">
+            <span>Current Food Level</span>
+            <input type="number" class="form-control" style="width: 100px;" ng-model="nLevel"/>
+        </div>
+    </form>
+
+    <form class="form-inline">
+        <div style="margin-top: 20px;" class="form-group">
+            <span>Max Food Level</span>
+            <input type="number" class="form-control" style="width: 100px;" ng-model="nMax"/>
+        </div>
+    </form>
+
+    <form class="form-inline">
+        <div style="margin-top: 20px;" class="form-group">
+            <span>Ants can leave pheromone trail</span>
+            <input type="checkbox" ng-model="doTrail"/>
+        </div>
+    </form>
+
+    <form class="form-inline">
+        <div style="margin-top: 20px;" class="form-group">
+            <span>Recruit at home</span>
+            <input type="checkbox" ng-model="recruitAtHome"/>
+        </div>
+    </form>
+
+    <!--    <div style="margin-top: 20px; width: 50%;">
+            <span>If a bee finds good nectar, she should:</span>
+            <select class="form-control" ng-model="dance">
+                <option value="dance-long">Dance to tell others and longer for better nectar</option>
+                <option value="dance">Dance to tell others</option>
+                <option value="go-back">Just go back there</option>
+                <option value="look-new">Look for a new one</option>
+                <option value="wait">Always wait to be told</option>
+            </select>
+        </div>-->
+
+    <div style="margin-top: 30px;">
+        <button class="btn btn-success btn-lg" ng-click="applyActorSetting()">Apply</button>
+    </div>
+
+</div>

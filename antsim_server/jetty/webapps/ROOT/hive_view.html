@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hive View</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="javascripts/jquery-2.1.1.min.js"></script>
+    <script src="javascripts/raphael-min.js"></script>
+    <script src="javascripts/chart/Chart.min.js"></script>
+    <script src="hashmap/hashmap.js"></script>
+    <script src="javascripts/hive_view.js"></script>
+    <style>
+        body {
+            background-color: #f8f8f8;
+        }
+    </style>
+    <script>
+        var HiveSvg = new HashMap();
+        var HiveCharts = new HashMap();
+
+        var WS = createWebSocket();
+    </script>
+</head>
+<body>
+<div id="input">
+    <p>Please choose your Hives by their ids:</p>
+
+    <div id="ids_box"></div>
+    <br/>
+    <button id="enter_ids">Ok</button>
+</div>
+<div id="charts"></div>
+</body>
+</html>

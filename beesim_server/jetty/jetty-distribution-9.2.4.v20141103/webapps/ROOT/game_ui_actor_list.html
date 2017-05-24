@@ -1,0 +1,99 @@
+<html>
+<head>
+    <title>BioSim</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="javascripts/jquery-2.1.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
+    <script src="ng/angular.min.js"></script>
+    <script>
+        function ActorListControl($scope, $http) {
+            $scope.bees = [];
+            $http({method: "get", url: "listActors"}).success(function (data) {
+                $scope.bees = data.actors;
+                $scope.bees.forEach(function (a) {
+                    if (a.device) {
+                        a.myClass = "success";
+                    } else {
+                        a.myClass = "warning";
+                    }
+                });
+                var ws = createWebSocket($scope.updateBees);
+            });
+
+            $scope.updateBees = function (bee) {
+                for (var i = 0; i < $scope.bees.length; i++) {
+                    if ($scope.bees[i].id === bee.id) {
+                        $scope.bees[i] = bee;
+                        if (bee.device) {
+                            bee.myClass = "success";
+                        } else {
+                            bee.myClass = "warning";
+                        }
+                        if (bee.connectivity === "true") {
+                            bee.connectivity = "online";
+                            bee.myClassConn = "success";
+                        } else {
+                            bee.connectivity = "offline";
+                            bee.myClassConn = "danger";
+                        }
+                        $scope.$apply();
+                        return;
+                    }
+                }
+            };
+        }
+
+        function createWebSocket(callback) {
+            if ("WebSocket" in window) {
+                var ws;
+                ws = new WebSocket("ws://" + window.location.host + "/actor");
+                ws.onopen = function () {
+                    console.log("Socket chat is open...");
+                };
+                ws.onmessage = function (evt) {
+                    var received_msg = evt.data;
+                    var actorInfo = JSON.parse(received_msg);
+                    callback(actorInfo);
+                };
+                ws.onclose = function () {
+                    alert("Connection to server is closed, please refresh page");
+                };
+                return ws;
+            }
+            else {
+                alert("Your browser does not support WebSocket, please change to a modern one");
+                return null;
+            }
+        }
+    </script>
+</head>
+<body ng-app ng-controller="ActorListControl">
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Bee</th>
+        <th>Device</th>
+        <th>Name</th>
+        <th>Home Hive</th>
+        <th>Energy</th>
+        <th>Nectar</th>
+        <th>Connectivity</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="bee in bees">
+        <td>{{bee.id}}</td>
+        <td ng-class="bee.myClass">{{bee.device}}</td>
+        <td>{{bee.name}}</td>
+        <td>{{bee.hive}}</td>
+        <td>{{bee.energy}}</td>
+        <td>{{bee.nectar}}</td>
+        <td ng-class="bee.myClassConn">{{bee.connectivity}}</td>
+    </tr>
+    </tbody>
+</table>
+{{hi}}
+</body>
+</html>

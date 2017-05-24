@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>BioSim</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="javascripts/jquery-2.1.1.min.js"></script>
+        <script src="javascripts/jquery-ui.min.js"></script>
+        <script src="javascripts/download.min.js"></script>
+        <script src="javascripts/jszip.min.js"></script>
+        <script src="javascripts/jszip-utils.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
+        <link href="bootstrap/bootstrap3-dialog/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css"/>
+        <script src="bootstrap/bootstrap3-dialog/js/bootstrap-dialog.min.js"></script>
+        <link href="bootstrap/bootstrap-slider-master/css/bootstrap-slider.min.css" rel="stylesheet" type="text/css"/>
+        <script src="bootstrap/bootstrap-slider-master/bootstrap-slider.min.js"></script>
+
+        <script src="javascripts/moment.min.js"></script>
+        <script src="javascripts/moment-duration-format.js"></script>
+
+        <script src="ng/ng-file-upload/angular-file-upload-shim.min.js"></script>
+        <script src="ng/angular.min.js"></script>
+        <script src="ng/ng-file-upload/angular-file-upload.min.js"></script>
+
+        <script src="phaser/phaser.min.js"></script>
+        <script src="hashmap/hashmap.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="jq-toastr/toastr.min.css"/>
+        <script type="text/javascript" src="jq-toastr/toastr.min.js"></script>
+
+        <script src="javascripts/chart/Chart.min.js"></script>
+        <script src="javascripts/my_chart.js"></script>
+        <script>
+            console.log(window.location.host);
+            angular.module("BioSim", ["angularFileUpload"]);
+            var ws;
+
+            if (window.File && window.FileReader && window.FileList && window.Blob) {
+                //alert("Great success! All the File APIs are supported.");
+            } else {
+                alert("The File APIs are not fully supported in this browser.");
+            }
+
+            function launchIntoFullscreen(element) {
+                if (element.requestFullscreen) {
+                    element.requestFullscreen();
+                } else if (element.mozRequestFullScreen) {
+                    element.mozRequestFullScreen();
+                } else if (element.webkitRequestFullscreen) {
+                    element.webkitRequestFullscreen();
+                } else if (element.msRequestFullscreen) {
+                    element.msRequestFullscreen();
+                }
+            }
+
+            function cancelFullscreen() {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                }
+            }
+
+            var gameControl;
+            var gameInfo;
+            var ShowActorGroup = false;
+            var ShowObjectId = false;
+            var currentSettingActor;
+            var LastScaleSize = 100;
+            var HideBars = false;
+            var HideReviveButton = true;
+            var ShowGameInfo = false;
+            var BeeSignMode = false;
+            var PheromoneSize = 60;
+            var PheromoneOpacity = 100;
+
+            function getRootScope() {
+                return angular.element(document.getElementById("root_control")).scope();
+            }
+
+            function centralGamePaused() {
+                gameInfo.text.setText("Paused");
+                gameInfo.text.visible = true;
+
+                var scope = getRootScope();
+                scope.centralGamePause = true;
+                scope.$apply();
+                //$("#timestamp_display").css("visibility", "hidden");
+            }
+
+            function centralGameStarted() {
+                gameInfo.text.setText("");
+                gameInfo.text.visible = ShowGameInfo;
+
+                var scope = getRootScope();
+                scope.centralGamePause = false;
+                scope.$apply();
+                $("#timestamp_display").css("visibility", "visible");
+
+                gameControl.reArrangeDisplay();
+            }
+
+            function centralGameIsSun() {
+                var scope = getRootScope();
+                scope.showSunButton = false;
+                scope.showSnowButton = true;
+                scope.$apply();
+            }
+
+            function centralGameIsSnow() {
+                var scope = getRootScope();
+                scope.showSunButton = true;
+                scope.showSnowButton = false;
+                scope.$apply();
+            }
+        </script>
+        <script src="ng/control_root.js"></script>
+        <script src="javascripts/websocket_index.js"></script>
+        <script src="protocol_action.js"></script>
+        <script src="game_control.js"></script>
+        <script src="game.js"></script>
+        <script src="game_model_gameInfo.js"></script>
+        <script src="game_model_flower.js"></script>
+        <script src="game_model_nectar.js"></script>
+        <script src="game_model_hive.js"></script>
+        <script src="game_model_bee.js"></script>
+        <script src="game_model_rest_box.js"></script>
+        <script src="game_model_bar.js"></script>
+        <script src="game_model_ant.js"></script>
+        <script src="game_model_predator.js"></script>
+        <script src="game_model_sky.js"></script>
+        <script src="game_model_fountain.js"></script>
+        <script src="game_model_hive_exit.js"></script>
+        <link href="main_style.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body ng-app="BioSim" ng-controller="RootControl" id="root_control">
+        <div class="row" style="width: 100%;">
+            <div class="col-xs-2"></div>
+            <div class="col-xs-8">
+                <hr/>
+                <img src="images/biosim_title.png" style="width: 250px; display:block; margin:auto;"/>
+                <br/>
+                <hr/>
+                <button class="btn btn-default" ng-click="normalDisplay()" style="float: right;" ng-show="isFullscreenNow">
+                    <span class="glyphicon glyphicon-resize-small"></span>
+                </button>
+                <button class="btn btn-default" ng-click="fullDisplay()" style="float: right;" ng-hide="isFullscreenNow">
+                    <span class="glyphicon glyphicon-resize-full"></span>
+                </button>
+                <button class="btn btn-default" id="menu_all" style="float: right; margin-right: 10px;">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </button>
+                <button class="btn btn-info" style="float: right; margin-right: 40px;" ng-click="showGameInfo()">
+                    <span class="glyphicon glyphicon-eye-open"></span>
+                </button>
+                <button class="btn btn-info" style="float: right; margin-right: 10px;" ng-click="switchHiveView()">
+                    <span class="glyphicon glyphicon-modal-window"></span>
+                </button>
+                <button class="btn btn-info" style="float: right; margin-right: 10px;" ng-click="enterSimMode()"
+                        ng-disabled="isBeeSignMode()">
+                    <span>Simulation: </span><span ng-if="isBeeSignMode()">ON</span><span ng-if="!isBeeSignMode()">OFF</span>
+                </button>
+                <button class="btn btn-info" style="float: right; margin-right: 20px;" ng-click="listActors()">
+                    <span class="glyphicon glyphicon-list"></span>
+                </button>
+                <button class="btn btn-info" style="float: right; margin-right: 20px;" ng-click="showIds()">ID</button>
+                <button class="btn btn-primary" style="float: right; margin-right: 20px;" ng-click="reviveAllBees()">ReviveAll
+                </button>
+                <br/>
+                <hr/>
+            </div>
+            <div class="col-xs-2"></div>
+        </div>
+        <div class="row" style="width: 100%;">
+            <div class="col-xs-2"></div>
+            <div class="col-xs-8">
+                <button class="btn btn-primary" style="float: right; margin-right: 20px;" ng-click="reset()">Reset all ants
+                </button>
+                <button class="btn btn-primary" style="float: right; margin-right: 20px;" ng-click="fixNorth()">Fix North
+                </button>
+                <br/>
+                <hr/>
+            </div>
+            <div class="col-xs-2"></div>
+        </div>
+        <div id="phaser-example" ng-class="gameCursor" style="width: 100%; height: 100%;" ng-hide="showHive"></div>
+        <iframe src="hive_view.html" style="width: 100%; height: 500px;" ng-show="showHive"></iframe>
+
+
+        <div class="row" style="width: 100%;">
+            <div class="col-xs-2"></div>
+            <div class="col-xs-8">
+                <hr/>
+                <div style="margin-top: 20px; width: 50%;" id="local_replay_jumper">
+                    <input type="number" id="jump_slider" data-slider-id="jumpSlider" style="width: 100%;"/>
+                </div>
+                <div style="margin-top: 20px; width: 25%;" id="replay_speed_picker">
+                    <input type="number" id="speed_slider" data-slider-id="speedSlider" style="width: 100%;"/>
+                </div>
+                <br/>
+
+                <!--For Live Game-->
+                <button class="btn btn-primary" ng-click="enterReplayMode()" ng-show="nowLiveMode">
+                    <span class="glyphicon glyphicon-time"></span>
+                </button>
+                <button class="btn btn-danger" ng-click="startCentralGame()" ng-show="centralGamePause && nowLiveMode">
+                    <span class="glyphicon glyphicon-play"></span>
+                </button>
+                <button class="btn btn-danger" ng-click="pauseCentralGame()" ng-show="!centralGamePause && nowLiveMode">
+                    <span class="glyphicon glyphicon-pause"></span>
+                </button>
+                <button class="btn btn-danger" ng-show="nowLiveMode" ng-click="remakeGame()">
+                    <span class="glyphicon glyphicon-repeat"></span>
+                </button>
+
+                <!--For Replay-->
+                <button class="btn btn-success" ng-click="restartLocalReplay()"
+                        ng-show="nowReplayMode">
+                    <span class="glyphicon glyphicon-fast-backward"></span>
+                </button>
+                <button class="btn btn-success" ng-click="resumeLocalReplay()"
+                        ng-show="nowReplayMode && gameControlIsPaused()" ng-disabled="!canReplayResume()">
+                    <span class="glyphicon glyphicon-play"></span>
+                </button>
+                <button class="btn btn-success" ng-click="pauseLocalReplay()"
+                        ng-show="nowReplayMode && !gameControlIsPaused()" ng-disabled="!canReplayPause()">
+                    <span class="glyphicon glyphicon-pause"></span>
+                </button>
+                <button class="btn btn-success" ng-click="advanceLocalReplay()"
+                        ng-show="nowReplayMode" ng-disabled="!canReplayAdvance()">
+                    <span class="glyphicon glyphicon-forward"></span>
+                </button>
+                <button class="btn btn-success" id="button_list_replay" ng-show="nowReplayMode">
+                    <span class="glyphicon glyphicon-open"></span>
+                </button>
+                <button class="btn btn-success" id="button_save_replay" ng-show="nowReplayMode"
+                        ng-disabled="!canSaveReplay">
+                    <span class="glyphicon glyphicon-save"></span>
+                </button>
+                <button class="btn btn-primary" ng-show="nowReplayMode" ng-click="goBackToLive()">
+                    <span class="glyphicon glyphicon-refresh"></span>
+                </button>
+
+                <!--For Other Info-->
+                <span id="timestamp_display" style="font-size: 28px; font-weight: bolder; margin-left: 10px;"></span>
+                <button class="btn btn-primary" ng-click="makeSun()"
+                        ng-show="showSunButton && nowLiveMode">
+                    <span class="glyphicon glyphicon-certificate"></span>
+                </button>
+                <button class="btn btn-primary" ng-click="makeSnow()"
+                        ng-show="showSnowButton && nowLiveMode">
+                    <span class="glyphicon glyphicon-cloud"></span>
+                </button>
+
+                <!--For Drawing-->
+                <button class="btn btn-default ng-class:{'active':isPainting}" ng-click="doPaint()">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+                <button class="btn btn-default ng-class:{'active':isErasing}" ng-click="doErase()">
+                    <span class="glyphicon glyphicon-erase"></span>
+                </button>
+                <button class="btn btn-default" ng-click="clearPaint()">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+                <hr/>
+            </div>
+            <div class="col-xs-2"></div>
+        </div>
+        <div id="hive_stats_area"></div>
+        <script>
+            $("#menu_all").click(function () {
+                BootstrapDialog.show({
+                    type: BootstrapDialog.TYPE_PRIMARY,
+                    title: "BioSim",
+                    message: $("<div></div>").load("game_ui_main_control.html"),
+                    cssClass: "setting-dialog",
+                    draggable: true,
+                    onshown: function () {
+                        var content = $("#main_control");
+                        angular.element(document.getElementById("root_control")).injector().invoke(function ($compile) {
+                            var scope = angular.element(content).scope();
+                            $compile(content)(scope);
+                            scope.$apply();
+                        });
+                    }
+                });
+            });
+
+            $("#button_save_replay").click(function () {
+                BootstrapDialog.show({
+                    type: BootstrapDialog.TYPE_SUCCESS,
+                    title: "Saving Replay...",
+                    message: $("<div></div>").load("game_ui_save_replay.html"),
+                    cssClass: "setting-dialog",
+                    draggable: true,
+                    onshown: function () {
+                        var content = $("#replay_name_control");
+                        angular.element(document.getElementById("root_control")).injector().invoke(function ($compile) {
+                            var scope = angular.element(content).scope();
+                            $compile(content)(scope);
+
+                            scope.formatPostfix();
+                            scope.$apply();
+                        });
+                    }
+                });
+            });
+
+            $("#button_list_replay").click(function () {
+                getRootScope().loadReplayList(function () {
+                    BootstrapDialog.show({
+                        type: BootstrapDialog.TYPE_SUCCESS,
+                        title: "Saved Replays",
+                        message: $("<div></div>").load("game_ui_replay_list.html"),
+                        cssClass: "setting-dialog",
+                        draggable: true,
+                        onshown: function () {
+                            var content = $("#replay_list_control");
+                            angular.element(document.getElementById("root_control")).injector().invoke(function ($compile) {
+                                var scope = angular.element(content).scope();
+                                $compile(content)(scope);
+                                scope.$apply();
+                            });
+                        }
+                    });
+                });
+            });
+
+            $("#local_replay_jumper").hide();
+            $("#replay_speed_picker").hide();
+        </script>
+
+    </body>
+</html>

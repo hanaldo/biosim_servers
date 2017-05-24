@@ -1,0 +1,73 @@
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span
+                        aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Create a new Real-time Game</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <span>Name of Game Holder:</span>
+                    <input type="text" ng-model="gameHolder"/>
+                </p>
+                <hr/>
+                <div>
+                    <span>Space: </span>
+                    <input type="number" ng-model="spaceW" style="width: 50px;"/>
+                    <span>X</span>
+                    <input type="number" ng-model="spaceH" style="width: 50px;"/>
+                </div>
+                <br/><br/>
+                <button ng-click="addActorGroup()" class="btn btn-primary" style="margin-bottom: 10px;">
+                    Add Actor Group
+                </button>
+                <div>
+                    <div ng-repeat="g in actorGroups" style="margin-bottom: 20px;">
+                        <a href="javascript:void(0);" ng-click="removeActorGroup($index)"><span
+                                class="glyphicon glyphicon-remove"></span>
+                        </a>
+                        <span>Actor Type:</span>
+                        <select ng-model="g.type" ng-options="type.name for type in actorTypes"></select>
+
+                        <span style="margin-left: 20px;">Number:</span>
+                        <input type="number" ng-model="g.number" style="width: 50px;"/>
+
+                        <span style="margin-left: 20px;">Group:</span>
+                        <select ng-model="g.group" ng-options="group.name for group in groupNumbers"></select>
+
+                        <div style="margin-left: 50px;margin-top: 5px;">
+                            <span>X:</span>
+                            <input type="number" ng-model="g.x" style="width: 50px;"/>
+                            <span>Y:</span>
+                            <input type="number" ng-model="g.y" style="width: 50px;"/>
+                        </div>
+
+                        <div ng-show="g.type.value == 'h' || g.type.value == 'f'"
+                             style="margin-left: 50px;margin-top: 5px;">
+                            <span>Current Nectar:</span>
+                            <input type="number" ng-model="g.currentNectar" style="width: 50px;"/>
+                            <span>Max Nectar:</span>
+                            <input type="number" ng-model="g.maxNectar" style="width: 50px;"/>
+                        </div>
+
+                        <div ng-show="g.type.value == 'b'"
+                             style="margin-left: 50px;margin-top: 5px;">
+                            <span>Current Energy:</span>
+                            <input type="number" ng-model="g.currentEnergy" style="width: 50px;"/>
+                            <span>Max Energy:</span>
+                            <input type="number" ng-model="g.maxEnergy" style="width: 50px;"/>
+                        </div>
+                        <hr/>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" ng-click="newGame()">Create</button>
+            </div>
+        </div>
+    </div>
+</div>
