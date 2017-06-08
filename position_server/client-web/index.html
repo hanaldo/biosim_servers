@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>BioSim Position</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <div id="message" style="padding: 100px;">
+  </div>
+  <script>
+    if ("WebSocket" in window) {
+      var ws = new WebSocket("ws://127.0.0.1:8080/positionBroadcaster");
+      ws.onopen = function() {
+        var div = document.getElementById("message");
+        div.innerHTML += "<div>WS is open...</div>";
+      };
+      ws.onmessage = function(ev) {
+        var div = document.getElementById("message");
+        div.innerHTML += "<div>" + ev.data + "</div>";
+      };
+      ws.onclose = function() {
+        var div = document.getElementById("message");
+        div.innerHTML += "<div>Connection to server is closed</div>";
+      };
+    } else {
+      alert("Your browser does not support WebSocket, please change to a modern one");
+    }
+  </script>
+</body>
+
+</html>
