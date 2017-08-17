@@ -1,5 +1,5 @@
 ## Position Board Introduction
-<img width="510" alt="trek1000_quick_start_guide_pdf _6_ _8_" src="https://user-images.githubusercontent.com/4184020/29436794-69bcedea-837b-11e7-9809-8a21c076be96.png">
+<img width="450" alt="trek1000_quick_start_guide_pdf _6_ _8_" src="https://user-images.githubusercontent.com/4184020/29436794-69bcedea-837b-11e7-9809-8a21c076be96.png">
 
 ## Starting Position Server
 
