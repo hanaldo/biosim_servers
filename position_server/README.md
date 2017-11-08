@@ -11,10 +11,10 @@ Regarding the hardware, you will need at least 4 of our positioning boards, beca
 
 This is the position board we made to incorporate the [DWM1000](https://www.decawave.com/products/dwm1000-module) chip in order to achieve precise distance measuring, and by combining a few of distances we can then achieve positioning. This board has similar functions as the [EVB1000](https://www.decawave.com/products/trek1000) board but much smaller and cheaper.
 
-There are a few switches on the board which allow to configure the positioning communication. For a simple starter, please keep switch-1 ON, switch-2 and switch-3 OFF all the time for all boards. Switch-4 configures the board to be either anchor or tag. Switch-5 to switch-7 are binary value for this board ID within the positioning system, please note that no boards should have the same ID.
+There are a few switches on the board which allow to configure the positioning communication. For a simple starter, please keep switch-1 ON, switch-2 and switch-3 OFF all the time for all boards. Switch-4 configures the board to be either anchor or tag. Switch-5 to switch-7 are binary values for this board ID within the positioning system, please note that no boards should have the same ID. For anchors to work together, their IDs should be starting from 0 and assigned consecutively. For example, "anchor-0 anchor-1 anchor-2" will work but "anchor-0 anchor-1 anchor-3" will not.
 
 ## Starting Position Server
-To start the server program, download the [server](https://github.com/hanaldo/biosim_servers/tree/master/position_server/server) folder and go under this folder from your local command line tool, and then type "java -jar start.jar".
+To start the server program, download the [server](https://github.com/hanaldo/biosim_servers/tree/master/position_server/server) folder and go under this folder from your local command line tool, and then type "java -jar start.jar". Then open your browser and go to this address "http://127.0.0.1:8080/" to see the position live page.
 
 ## Setting up the area (dimension)
 Before start to track tag positions, you need to specify the width and the height of the tracked area, otherwise the indoor positions are meaningless. You can measure your area by hand if you have some long rulers, however our program can help you ease the process.
