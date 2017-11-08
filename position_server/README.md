@@ -24,7 +24,8 @@ First, start the server program and go to the position live page, and then plug 
 Right now power up anchor-1 and put it at the position of the top-right corner of your positioning area, power up anchor-2 and put it at the position of the bottom-right corner of your positioning area. Then you can power up a tag board (any tag, such as tag-0), and put your tag besides your anchor-1, you can temporarily put your anchor-1 aside but must be kept power on, and let tag-0 sitting at the exact location of your top-right corner. So that the server can measure the distances between the two anchors and the tag (this will be your area width and height), because in our algorithm the anchors do not capture the distances between each other, the distance has to be between an anchor and a tag.
 
 After about 10 seconds or so when you think the distances are accurate (you kept the tag board steady), power off the tag board. You should be able to see that the dimension values were constantly updating on your position live page, such as this:
-<img width="600" alt="live dimension" src="https://user-images.githubusercontent.com/4184020/32579106-bb72eda6-c4ad-11e7-8791-222fea004337.gif">
+
+<img width="300" alt="live dimension" src="https://user-images.githubusercontent.com/4184020/32579106-bb72eda6-c4ad-11e7-8791-222fea004337.gif">
 
 
 And after you powered off the tag the dimension values should stop changing. You can manually change the dimension values, and then click "Set Dimension" button. Don't for get to put the anchor-1 back to the the top-right corner if you previouly put it aside. You can also immediately setup anchor-3 after setup anchor-2, because the width and height are already measured between the 3 anchors. Our server program can work with both 3 anchors or 4 anchors,
