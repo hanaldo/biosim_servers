@@ -13,17 +13,17 @@ This is the position board we made to incorporate the [DWM1000](https://www.deca
 
 There are a few switches on the board which allow to configure the positioning communication. For a simple starter, please keep switch-1 ON, switch-2 and switch-3 OFF all the time for all boards. Switch-4 configures the board to be either anchor or tag. Switch-5 to switch-7 are binary values for this board ID within the positioning system, please note that no boards should have the same ID. For anchors to work together, their IDs should be starting from 0 and assigned consecutively. For example, "anchor-0 anchor-1 anchor-2" will work but "anchor-0 anchor-1 anchor-3" will not.
 
-## Starting Position Server
+## Start Position Server
 To start the server program, download the [server](https://github.com/hanaldo/biosim_servers/tree/master/position_server/server) folder and go under this folder from your local command line tool, and then type "java -jar start.jar". Then open your browser and go to this address "http://127.0.0.1:8080/" to see the position live page.
 
-## Setting up the area (dimension)
-Before start to track tag positions, you need to specify the width and the height of the tracked area, otherwise the indoor positions are meaningless. You can measure your area by hand if you have some long rulers, however our program can help you ease the process.
+## Set Up The Area (dimension)
+Before start to track tag positions, you need to specify the width and the height of the tracked area, otherwise the indoor positions are meaningless. You can measure your area BY HAND, or our program can help you ease the process.
 
-First, start the server program and go to the position live page, and then plug in the anchor 0 to your computer, and then start the serial port as prompted.
+First, start the server program and go to the position live page, and then plug in the anchor-0 to your computer, and then start the serial port as prompted. Please note that we always assume anchor-0 is at the top-left corner of your positioning area.
 
-Right now you can power up a tag board (any tag, such as tag 0), and put your tag at the position of where you want your anchor 1 to be, so that the server can measure the distance between anchor 0 and anchor 1 (this may be your area width), because in our algorithm the anchors do not capture the distances between each other, the distance has to be between an anchor and a tag.
+Right now you can power up a tag board (any tag, such as tag-0), and put your tag at the position of the top-right corner of your your positioning area (where you want your anchor-1 to be), and then power up anchor-1 and put it at the position of the bottom-right corner of your positioning area (where you want your anchor-2 to be), so that the server can measure the distances between the two anchors and the tag (this will be your area width and height), because in our algorithm the anchors do not capture the distances between each other, the distance has to be between an anchor and a tag.
 
-After about 10 seconds or so when you think the distance is accurate (you kept the tag board steady), power off the tag board. And then setup the anchor 1 to the same position (where your tag was at). After this, use the same tag board to repeat the process again to measure your area height, i.e. put the tag at the position of where you want your anchor 2 to be. When you finish, power off the tag and then setup anchor 2. You can also immediately setup anchor 3 after setup anchor 2, because the width and height are already measured between the 3 anchors.
+After about 10 seconds or so when you think the distances are accurate (you kept the tag board steady), power off the tag board. And then put the anchor-1 back to the the top-right corner (where your tag was at). After this, power up anchor-2 and put it at the position of the bottom-right corner of your positioning area. You can also immediately setup anchor-3 after setup anchor-2, because the width and height are already measured between the 3 anchors. Our server program can work with both 3 anchors or 4 anchors, 
 
 ## Start Tracking Position
 In order to track tags, you will need at least 3 anchors set up and powered on. First start the server program, and then go to the position live page, ...
