@@ -7,7 +7,7 @@ In order to run the position server, you need to install [JDK 8](http://www.orac
 Regarding the hardware, you will need at least 4 of our positioning boards, because we need at least 3 anchors to achieve trilateration within a 2D dimension, and the other board can act as the tag which to be tracked. Please note that we currently only support maximum of 4 anchors and 8 tags.
 
 ## Position Board Introduction
-<img width="600" alt="biosim position board" src="https://github.com/hanaldo/biosim_servers/tree/master/position_server/images/board.png">
+<img width="600" alt="biosim position board" src="https://user-images.githubusercontent.com/4184020/32562351-6f10fb82-c47c-11e7-986a-0bf4a30917f2.png">
 
 This is the position board we made to incorporate the [DWM1000](https://www.decawave.com/products/dwm1000-module) chip in order to achieve precise distance measuring, and by combining a few of distances we can then achieve positioning. This board has similar functions as the [EVB1000](https://www.decawave.com/products/trek1000) board but much smaller and cheaper.
 
