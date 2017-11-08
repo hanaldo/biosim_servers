@@ -4,14 +4,14 @@ In order to run the position server, you need to install [JDK 8](http://www.orac
 <img width="600" alt="biosim_position" src="https://user-images.githubusercontent.com/4184020/29588169-7f68b336-875e-11e7-8dc2-1988d71707ef.png">
 
 
-Regarding the hardware, you will need at least 4 of our positioning boards, because we need at least 3 anchors to do the trilateration within a 2D dimension, and the other board can act as the tag which to be tracked. Please note that we currently only support maximum of 4 anchors and 8 tags.
+Regarding the hardware, you will need at least 4 of our positioning boards, because we need at least 3 anchors to achieve trilateration within a 2D dimension, and the other board can act as the tag which to be tracked. Please note that we currently only support maximum of 4 anchors and 8 tags.
 
 ## Position Board Introduction
-<img width="300" alt="biosim position board" src="https://user-images.githubusercontent.com/4184020/29587727-d455cf3e-875c-11e7-8a6f-40f64447ba8c.png">
+<img width="600" alt="biosim position board" src="https://user-images.githubusercontent.com/4184020/32562351-6f10fb82-c47c-11e7-986a-0bf4a30917f2.png">
 
 This is the position board we made to incorporate the [DWM1000](https://www.decawave.com/products/dwm1000-module) chip in order to achieve precise distance measuring, and by combining a few of distances we can then achieve positioning. This board has similar functions as the [EVB1000](https://www.decawave.com/products/trek1000) board but much smaller and cheaper.
 
-<img width="450" alt="trek1000_quick_start_guide_pdf _6_ _8_" src="https://user-images.githubusercontent.com/4184020/29436794-69bcedea-837b-11e7-9809-8a21c076be96.png">
+There are a few switches on the board which allow to configure the positioning communication. For a simple starter, please keep switch-1 ON, switch-2 and switch-3 OFF all the time for all boards. Switch-4 configures the board to be either anchor or tag. Switch-5 to switch-7 are binary value for this board ID within the positioning system, please note that no boards should have the same ID.
 
 ## Starting Position Server
 To start the server program, download the [server](https://github.com/hanaldo/biosim_servers/tree/master/position_server/server) folder and go under this folder from your local command line tool, and then type "java -jar start.jar".
