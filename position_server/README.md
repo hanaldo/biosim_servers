@@ -38,6 +38,6 @@ The overall procedure can be described as 5 major steps:
 4. Power on your tags and start moving!
 
 ## Raw Data
-Actually you don't need our server program at all if you want to do the computation yourself. Then connects anchor-0 to your computer through USB port, you can always read all the raw distance messages from the USB port.
+Actually you don't need our server program at all if you want to do the computation yourself. When connect anchor-0 to your computer on USB port, you can always read all the raw distance messages from port by using any serial tool or program.
 
 <img width="500" alt="ranging format" src="https://user-images.githubusercontent.com/4184020/32630321-48ec4b5c-c56a-11e7-91fd-ff69d52910db.png">
