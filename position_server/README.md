@@ -11,7 +11,7 @@ Regarding the hardware, you will need at least 4 of our positioning boards, beca
 
 This is the position board we made to incorporate the [DWM1000](https://www.decawave.com/products/dwm1000-module) chip in order to achieve precise distance measuring, and by combining a few of distances we can then achieve positioning. This board has similar functions as the [EVB1000](https://www.decawave.com/products/trek1000) board but much smaller and cheaper.
 
-There are a few switches on the board which allow to configure the positioning communication. For a simple starter, please keep switch-1 ON, switch-2 and switch-3 OFF all the time for all boards. Switch-4 configures the board to be either anchor or tag. Switch-5 to switch-7 are binary values for this board ID within the positioning system, please note that no boards should have the same ID. For anchors to work together, their IDs should be starting from 0 and assigned consecutively. For example, "anchor-0 anchor-1 anchor-2" will work but "anchor-0 anchor-1 anchor-3" will not.
+There are a few switches on the board which allow to configure the positioning communication. For a simple starter, please keep switch-1 ON, switch-2 and switch-3 OFF all the time for all boards. Switch-4 configures the board to be either anchor or tag. Switch-5 to switch-7 are binary values to define this board ID within the positioning system, please note that no boards should have the same ID. For anchors to work together, their IDs should be starting from 0 and assigned consecutively. For example, "anchor-0 anchor-1 anchor-2" will work but "anchor-0 anchor-1 anchor-3" will not.
 
 ## Start Position Server
 To start the server program, download the [server](https://github.com/hanaldo/biosim_servers/tree/master/position_server/server) folder and go under this folder from your local command line tool, and then type "java -jar start.jar". Then open your browser and go to this address "http://127.0.0.1:8080/" to see the position live page.
@@ -28,7 +28,11 @@ After about 10 seconds or so when you think the distances are accurate (you kept
 <img width="300" alt="live dimension" src="https://user-images.githubusercontent.com/4184020/32579106-bb72eda6-c4ad-11e7-8791-222fea004337.gif">
 
 
-And after you powered off the tag the dimension values should stop changing. You can manually change the dimension values, and then click "Set Dimension" button. Don't for get to put the anchor-1 back to the the top-right corner if you previouly put it aside. You can also immediately setup anchor-3 after setup anchor-2, because the width and height are already measured between the 3 anchors. Our server program can work with both 3 anchors or 4 anchors,
+And after you powered off the tag the dimension values should stop changing. You can manually change the dimension values, and then click "Set Dimension" button. Don't for get to put the anchor-1 back to the the top-right corner if you previouly put it aside. You can also immediately setup anchor-3 after setup anchor-2, because the width and height are already measured between the 3 anchors. Our server program can work with both 3 anchors or 4 anchors, the 4th anchor should sit at the bottom-left corner of your area, having 4 anchors may reduce more location computation error due to the [trilateration](https://github.com/lemmingapex/trilateration) algorithm we used.
 
 ## Start Tracking Position
-In order to track tags, you will need at least 3 anchors set up and powered on. First start the server program, and then go to the position live page, ...
+The overall procedure can be described as 4 major steps:
+1. Start the server program (Java) on your computer
+2. Put your anchors at the corners and power them on, connect anchor-0 to your computer
+3. Measure and set your area dimensions
+4. Power on your tags and start moving!
