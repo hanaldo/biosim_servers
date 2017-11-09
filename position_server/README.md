@@ -36,3 +36,8 @@ The overall procedure can be described as 5 major steps:
 2. Put your anchors at the corners and power them on, connect anchor-0 to your computer
 3. Measure and set your area dimensions
 4. Power on your tags and start moving!
+
+## Raw Data
+Actually you don't need our server program at all if you want to do the computation yourself. Then connects anchor-0 to your computer through USB port, you can always read all the raw distance messages from the USB port.
+
+<img width="500" alt="ranging format" src="https://user-images.githubusercontent.com/4184020/32630321-48ec4b5c-c56a-11e7-91fd-ff69d52910db.png">
