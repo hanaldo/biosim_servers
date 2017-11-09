@@ -30,9 +30,9 @@ After about 10 seconds or so when you think the distances are accurate (you kept
 
 And after you powered off the tag the dimension values should stop changing. You can manually change the dimension values, and then click "Set Dimension" button. Don't for get to put the anchor-1 back to the the top-right corner if you previouly put it aside. You can also immediately setup anchor-3 after setup anchor-2, because the width and height are already measured between the 3 anchors. Our server program can work with both 3 anchors or 4 anchors, the 4th anchor should sit at the bottom-left corner of your area, having 4 anchors may reduce more location computation error due to the [trilateration](https://github.com/lemmingapex/trilateration) algorithm we used.
 
-## Start Tracking Position
-The overall procedure can be described as 4 major steps:
-1. Start the server program (Java) on your computer
+## Start Tracking Positions
+The overall procedure can be described as 5 major steps:
+1. Start the server program (Java) on your computer and open the live page
 2. Put your anchors at the corners and power them on, connect anchor-0 to your computer
 3. Measure and set your area dimensions
 4. Power on your tags and start moving!
