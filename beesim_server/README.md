@@ -25,11 +25,11 @@
 2. Make sure all honey bee puppets are switched ON.
 
 3. Link all participating bee puppets:
-* Click the eye button, unlinked bees will show a red exclamation triangle under him, this means the bee objects in the game are not linked to the physical bee puppet yet.
-* You can link bees one by one by just clicking the
-* “begin linking active devices.”
-* The system should recognize all the bees.
-* The red exclamation triangles will disappear on the bees that have been linked.
+   * Click the eye button, unlinked bees will show a red exclamation triangle under him, this means the bee objects in the game are not linked to the physical bee puppet yet.
+   * You can link bees one by one by just clicking one red exclamation triangle of a bee, and then hold the desired bee puppet to touch any RFID tag. After a beep you should see the bee object is linked, 
+   * “begin linking active devices.”
+   * The system should recognize all the bees.
+   * The red exclamation triangles will disappear on the bees that have been linked.
 
 4. Click on a flower or hive (passive devices) to link it. Use any one of the linked bees to touch the passive device. It should be recognized automatically.
 
