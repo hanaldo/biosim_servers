@@ -1,8 +1,8 @@
 ## Prerequisite
-1
+1.
 In order to run the BeeSim server, you need to install [JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) on your computer, and a fairly modern browser (such as Google Chrome). You can type "java -version" at your terminal to confirm the Java version.
 
-2
+2.
 Download and uncompress the entire github zip file, this contains the entire BeeSim Java server program.
 
 ## Steps for running the BeeSim Java server
