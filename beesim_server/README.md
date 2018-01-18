@@ -4,11 +4,11 @@
 2. Download and uncompress the entire github zip file, this contains the entire BeeSim Java server program.
 
 ## Steps for running the BeeSim Java server
-1. The XBee module should be plugged into your computer.
+1. The XBee (server, ID: A001) module should be plugged into your computer.
 
 <img width="300" alt="beesim_xbee_server_device" src="https://user-images.githubusercontent.com/4184020/35123718-6bdf9b3a-fc71-11e7-83f4-7341f77f3ff3.png"/>
 
-2. Open your terminal (Mac) or command prompt (Windows). Make sure you are under the directory of ../jetty/. To do this, type the command “cd “ and drag the jetty folder into the prompt window after it.
+2. Open your terminal (Mac) or command prompt (Windows). Make sure you are under the directory of ../jetty/. To easily do this, type the command “cd “ and drag the jetty folder into the prompt window after it.
 
 3. Start the server by typing command "java -jar start.jar".
 
@@ -16,19 +16,24 @@
 
 5. Open a browser and access the web app at your local IP address, followed by “:8080” For example: "http://192.168.1.109:8080". You can access the web app at your public IP address from other computers. If you do not have any network connection, you can still always access the web app at "http://127.0.0.1:8080" or "http://localhost:8080".
 
+## Steps for stopping/restarting the BioSim Java server
+1. Press "ctrl+c" in your terminal to end the server process. And type "java -jar start.jar" to start again if you wish.
+
 ## Steps for starting a BeeSim game
-1. Click “create new game from file.” Your file explorer will open, and you can choose desired file to begin.
+1. Click the setting icon, then click “Create game from file” button. Your file explorer will open, and you can choose desired Excel game file to begin.
 
-2. Make sure all honey bee puppets are switched ON
+2. Make sure all honey bee puppets are switched ON.
 
-3. Click “begin linking active devices.” The system should recognize all the bees. The red exclamation points will disappear on the bees that have been linked.
+3. Link all participating bee puppets:
+* Click the eye button, unlinked bees will show a red exclamation triangle under him, this means the bee objects in the game are not linked to the physical bee puppet yet.
+* You can link bees one by one by just clicking the
+* “begin linking active devices.”
+* The system should recognize all the bees.
+* The red exclamation triangles will disappear on the bees that have been linked.
 
 4. Click on a flower or hive (passive devices) to link it. Use any one of the linked bees to touch the passive device. It should be recognized automatically.
 
 5. Once this is done for every passive device, click “start game.” Play will start right away.
-
-## Steps for stopping/restarting the BioSim Java server
-1. Press "ctrl+c" in your terminal to end the server process. And type "java -jar start.jar" to start again if you wish.
 
 ## Steps for configuring a BeeSim game before start
 1. ...
