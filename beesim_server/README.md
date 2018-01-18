@@ -6,7 +6,7 @@
 ## Steps for running the BeeSim Java server
 1. The XBee module should be plugged into your computer.
 
-<img width="600" alt="biosim_position" style="display: block; margin: 0 auto;" src="https://user-images.githubusercontent.com/4184020/29588169-7f68b336-875e-11e7-8dc2-1988d71707ef.png">
+<img width="300" alt="beesim_xbee_server_device" src="https://user-images.githubusercontent.com/4184020/35123718-6bdf9b3a-fc71-11e7-83f4-7341f77f3ff3.png"/>
 
 2. Open your terminal (Mac) or command prompt (Windows). Make sure you are under the directory of ../jetty/. To do this, type the command “cd “ and drag the jetty folder into the prompt window after it.
 
