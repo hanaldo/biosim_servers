@@ -1,12 +1,12 @@
 ## Prerequisite
-1.
-In order to run the BeeSim server, you need to install [JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) on your computer, and a fairly modern browser (such as Google Chrome). You can type "java -version" at your terminal to confirm the Java version.
+1. In order to run the BeeSim server, you need to install [JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) on your computer, and a fairly modern browser (such as Google Chrome). You can type "java -version" at your terminal to confirm the Java version.
 
-2.
-Download and uncompress the entire github zip file, this contains the entire BeeSim Java server program.
+2. Download and uncompress the entire github zip file, this contains the entire BeeSim Java server program.
 
 ## Steps for running the BeeSim Java server
 1. The XBee module should be plugged into your computer.
+
+<img width="600" alt="biosim_position" style="display: block; margin: 0 auto;" src="https://user-images.githubusercontent.com/4184020/29588169-7f68b336-875e-11e7-8dc2-1988d71707ef.png">
 
 2. Open your terminal (Mac) or command prompt (Windows). Make sure you are under the directory of ../jetty/. To do this, type the command “cd “ and drag the jetty folder into the prompt window after it.
 
@@ -28,8 +28,10 @@ Download and uncompress the entire github zip file, this contains the entire Bee
 5. Once this is done for every passive device, click “start game.” Play will start right away.
 
 ## Steps for stopping/restarting the BioSim Java server
-1)
-Press "ctrl+c" in your terminal to end the server process. And type "java -jar start.jar" to start again if you wish.
+1. Press "ctrl+c" in your terminal to end the server process. And type "java -jar start.jar" to start again if you wish.
+
+## Steps for configuring a BeeSim game before start
+1. ...
 
 ## Demos
 1) Start the BioSim Java server<br/>
