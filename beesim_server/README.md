@@ -4,7 +4,7 @@
 2. Download and uncompress the entire github zip file, this contains the entire BeeSim Java server program.
 
 ## Steps for running the BeeSim Java server
-1. The XBee (server, ID: A001) module should be plugged into your computer.
+1. The XBee (ID: A001) module should be plugged into your computer.
 
 <img width="300" alt="beesim_xbee_server_device" src="https://user-images.githubusercontent.com/4184020/35123718-6bdf9b3a-fc71-11e7-83f4-7341f77f3ff3.png"/>
 
@@ -12,11 +12,11 @@
 
 3. Start the server by typing command "java -jar start.jar".
 
-4. The server will then prompt you to enter your serial port name (for the XBee). For Windows, this will look like COM4, for example, and for Mac it will look like /dev/tty.uusbserial-A5025MPP. You can find the correct name by searching the device details in your computer's control panel - If you are using Windows, please make sure you have the FTDI driver installed, you can consult a [tutorial](https://learn.sparkfun.com/tutorials/how-to-install-ftdi-drivers/windows---quick-and-easy) and the [driver page](http://www.ftdichip.com/Drivers/VCP.htm). If there is any error when connecting the serial port, you just need to stop the process by pressing "ctrl+c" and start the server again. After that the terminal will prompt you the sever is ready such as: "Thank you! You server is ready."
+4. The server will then prompt you to enter your serial port name (for the XBee module). For Windows, this will look like COM4, for example, and for Mac it will look like /dev/tty.uusbserial-A5025MPP. You can find the correct name by searching the device details in your computer's control panel - If you are using Windows, please make sure you have the FTDI driver installed, you can consult a [tutorial](https://learn.sparkfun.com/tutorials/how-to-install-ftdi-drivers/windows---quick-and-easy) and the [driver page](http://www.ftdichip.com/Drivers/VCP.htm). If there is any error when connecting the serial port, you just need to stop the process by pressing "ctrl+c" and start the server again. After that the terminal will prompt you the sever is ready such as: "Thank you! You server is ready."
 
-5. Open a browser and access the web app at your local IP address, followed by “:8080” For example: "http://192.168.1.109:8080". You can access the web app at your public IP address from other computers. If you do not have any network connection, you can still always access the web app at "http://127.0.0.1:8080" or "http://localhost:8080".
+5. Open a browser and access the web app at your local IP address, followed by port “:8080” For example: "http://192.168.1.109:8080". You can access the web app at your public IP address from other computers. If you do not have any network connection, you can still always access the web app at "http://127.0.0.1:8080" or "http://localhost:8080".
 
-## Steps for stopping/restarting the BioSim Java server
+## Stopping/restarting the BioSim Java server
 1. Press "ctrl+c" in your terminal to end the server process. And type "java -jar start.jar" to start again if you wish.
 
 ## Steps for starting a BeeSim game
@@ -26,7 +26,7 @@
 
 3. Link all participating bee puppets:
    * Click the eye button, unlinked bees will show a red exclamation triangle under him, this means the bee objects in the game are not linked to the physical bee puppet yet.
-   * You can link bees one by one by just clicking one red exclamation triangle of a bee, and then hold the desired bee puppet to touch any RFID tag. After a beep you should see the bee object is linked, 
+   * You can link bees one by one by just clicking one red exclamation triangle of a bee, and then hold the desired bee puppet to touch any RFID tag. After a beep you should see the bee object is linked,
    * “begin linking active devices.”
    * The system should recognize all the bees.
    * The red exclamation triangles will disappear on the bees that have been linked.
@@ -35,8 +35,10 @@
 
 5. Once this is done for every passive device, click “start game.” Play will start right away.
 
-## Steps for configuring a BeeSim game before start
-1. ...
+## Configuring a BeeSim game before start
+1. An example game file in MS Excel format is provided. To start a game with the file you just need to click “Create game from file” button and choose this file.
+
+2.
 
 ## Demos
 1) Start the BioSim Java server<br/>
