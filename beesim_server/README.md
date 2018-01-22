@@ -20,18 +20,15 @@
 1. Press "ctrl+c" in your terminal to end the server process. And type "java -jar start.jar" to start again if you wish.
 
 ## Steps for starting a BeeSim game
-1. Click the setting icon, then click “Create game from file” button. Your file explorer will open, and you can choose desired Excel game file to begin.
+1. Click the setting icon (<img width="24" alt="setting_button" src="https://user-images.githubusercontent.com/4184020/35249320-8b24163e-ff9f-11e7-96d1-e581775ab1d3.png"/>), then click “Create game from file” button. Your file explorer will open, and you can choose desired game file to begin.
 
 2. Make sure all honey bee puppets are switched ON.
 
 3. Link all participating bee puppets:
-   * Click the eye button (<img width="24" alt="beesim_xbee_server_device" src="https://user-images.githubusercontent.com/4184020/35249247-461928b8-ff9f-11e7-939c-6c6de4f44b34.png"/>), unlinked bees will show a red exclamation triangle under him, this means the bee objects in the game are not linked to the physical bee puppet yet.
-   * You can link bees one by one by just clicking one red exclamation triangle of a bee, and then hold the desired bee puppet to touch any RFID tag. After a beep you should see the bee object is linked,
-   * “begin linking active devices.”
-   * The system should recognize all the bees.
-   * The red exclamation triangles will disappear on the bees that have been linked.
+   * Click the eye button (<img width="24" alt="eye_button" src="https://user-images.githubusercontent.com/4184020/35249247-461928b8-ff9f-11e7-939c-6c6de4f44b34.png"/>), unlinked bees will show a red exclamation triangle (<img width="24" alt="not_linked_icon" src="https://user-images.githubusercontent.com/4184020/35250094-e5e647ec-ffa2-11e7-926d-259dbe25ed4c.png"/>) under him, this means the bee objects in the game are not linked to the physical bee puppet yet.
+   * You can then click the setting icon, and go under "Simulation Control" tab, and click "Start Linking Active Devices" button. The system should recognize all the bees. The red exclamation triangles will disappear on the bees that have been linked.
 
-4. Click on a flower or hive (passive devices) to link it. Use any one of the linked bees to touch the passive device. It should be recognized automatically.
+4. Click on the red exclamation triangle of a flower or hive (passive devices) to link it. Use any one of the linked bees to touch the passive device. It should be recognized automatically.
 
 5. Once this is done for every passive device, click “start game.” Play will start right away.
 
