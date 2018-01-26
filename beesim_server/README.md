@@ -35,7 +35,9 @@
 ## Configuring a BeeSim game before start
 1. An example game file in MS Excel format is provided. To start a game with the file you just need to click “Create game from file” button and choose this file.
 
-2.
+2. The first row in the game file is for defining some overall game properties. The "Space Width" item and the "Space Height" item are used to describe how big the game space is virtually. e.g. "5w x 5h" can be thought of a virtual squre space with 25 grids.
+
+3. Under the blue row ("Group Name") is all the information about all the different game objects, and they are configured by groups. A group with Object Type "bee" and Number of Objects of "4" means there will be 4 bees in the game.
 
 ## Demos
 1) Start the BioSim Java server<br/>
