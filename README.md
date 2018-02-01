@@ -4,3 +4,5 @@ BioSim Servers
 *MOST RECENT BEESIM SERVER UPDATE: 02/19/16*
 
 *MOST RECENT ANTSIM SERVER UPDATE: 04/18/17*
+
+*MOST RECENT BIOSIM SERVER UPDATE: 02/01/18 (This is a combined version of both BeeSim and AntSim)*

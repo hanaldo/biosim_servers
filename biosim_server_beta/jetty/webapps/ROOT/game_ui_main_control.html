@@ -1,0 +1,186 @@
+<div id="main_control">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#game-details" data-toggle="tab">Game Details</a></li>
+        <li><a href="#server-control" data-toggle="tab">Server Control</a></li>
+        <li><a href="#display-control" data-toggle="tab">Display Control</a></li>
+        <li><a href="#simulation-control" data-toggle="tab">Simulation Control</a></li>
+        <li><a href="#other-control" data-toggle="tab">Other Control</a></li>
+        <li><a href="#developer-control" data-toggle="tab">Developer Control</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="game-details">
+            <div style="margin-top: 50px;"></div>
+            <h1><span>{{getGameType()}}</span> <span style="color: #c12e2a">{{gameMode}}</span></h1>
+
+            <p>Game Holder: {{gameHolder}}</p>
+
+            <p>Game starts at: {{gameStartTime| date:"medium"}}</p>
+
+            <div style="margin-top: 50px;"></div>
+            <div class="btn btn-primary btn-file">
+                <span>Create game from file</span>
+                <input type="file" ng-file-select="onGameFileSelect($files)"/>
+            </div>
+            <button class="btn btn-info" ng-click="getGameFile()">
+                Get Updated Game File
+            </button>
+        </div>
+        <div class="tab-pane" id="server-control">
+            <div style="margin-top: 50px;"></div>
+            <span ng-if="xbeeIsOn" style="font-size: 18px; color: #5cb85c;">XBee: Connected</span>
+            <span ng-if="!xbeeIsOn" style="font-size: 18px; color: #d9534f;">XBee: Not connected</span>
+            <br/>
+            <br/>
+            <button class="btn btn-primary" ng-click="startXBee()" ng-if="!xbeeIsConnecting && !xbeeIsOn">Connect XBee</button>
+            <button class="btn btn-danger" ng-click="stopXBee()" ng-if="xbeeIsOn || xbeeIsConnecting">Disconnect XBee</button>
+        </div>
+        <div class="tab-pane" id="display-control">
+            <div style="margin-top: 50px;"></div>
+            <button class="btn btn-info" ng-click="pauseDisplay()">Pause Display</button>
+            <button class="btn btn-info" ng-click="resumeDisplay()">Resume Display</button>
+            <button class="btn btn-info" ng-click="showGroups()">{{showGroupButton}}</button>
+            <button class="btn btn-info" ng-click="showBars()">{{showBarsButton}}</button>
+            <button class="btn btn-info" ng-click="showRevive()">{{showReviveButton}}</button>
+            <div style="margin-top: 50px;">
+                <span>Graphic Size</span>
+                <input type="number" id="bee_size_slider" data-slider-id="mySlider"
+                       data-slider-min="20"
+                       data-slider-max="100"/>
+            </div>
+            <div style="margin-top: 50px;">
+                <span>Pheromone Size</span>
+                <input type="number" id="pheromone_size_slider" data-slider-id="mySlider2"
+                       data-slider-min="20"
+                       data-slider-max="100"/>
+            </div>
+            <div style="margin-top: 50px;">
+                <span>Pheromone Opacity</span>
+                <input type="number" id="pheromone_opacity_slider" data-slider-id="mySlider3"
+                       data-slider-min="20"
+                       data-slider-max="100"/>
+            </div>
+            <div style="margin-top: 60px;">
+                <div class="row">
+                    <div class="col-xs-3 col-md-3">
+                        <a href="javascript:void(0);" class="thumbnail" ng-click="changeBackground('tile')">
+                            <img src="images/grass.jpg" style="height: 100px;">
+                        </a>
+                    </div>
+                    <div class="col-xs-3 col-md-3">
+                        <a href="javascript:void(0);" class="thumbnail" ng-click="changeBackground('back2')">
+                            <img src="images/back2.png" style="height: 100px;">
+                        </a>
+                    </div>
+                    <div class="col-xs-3 col-md-3">
+                        <a href="javascript:void(0);" class="thumbnail" ng-click="changeBackground('back3')">
+                            <img src="images/back3.png" style="height: 100px;">
+                        </a>
+                    </div>
+                    <div class="col-xs-3 col-md-3">
+                        <a href="javascript:void(0);" class="thumbnail" ng-click="changeBackground('back4')">
+                            <img src="images/back4.png" style="height: 100px;">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" id="simulation-control">
+            <div style="margin-top: 50px;"></div>
+            <button class="btn btn-primary" ng-click="startLinkingDevices()">Start Linking Active
+                Devices
+            </button>
+            <br/><br/>
+            <button class="btn btn-info" ng-click="makeSun()" ng-disabled="cannotStartLiveReplay">Make Sunny
+            </button>
+            <button class="btn btn-info" ng-click="makeRain()" ng-disabled="cannotStartLiveReplay">Make Rainy
+            </button>
+            <button class="btn btn-info" ng-click="makeSnow()" ng-disabled="cannotStartLiveReplay">Make Snowy
+            </button>
+            <br/><br/>
+            <button class="btn btn-primary" ng-click="stopPositionServer()">
+                Stop Positioning Server
+            </button>
+            <button class="btn btn-primary" ng-click="startPositionServer()">
+                Restart Positioning Server
+            </button>
+            <input type="text" ng-model="pServerPort"/>
+        </div>
+        <div class="tab-pane" id="other-control">
+            <div style="margin-top: 50px;"></div>
+            <a href="mini_game_control.html" class="btn btn-default" target="_blank">Go to Mini-Game
+                Center</a>
+            <a href="hive_view.html" class="btn btn-default" target="_blank">Go to Hive View</a>
+        </div>
+        <div class="tab-pane" id="developer-control">
+            <div style="margin-top: 50px;"></div>
+            <span>Make an Action of Actor:
+                <input type="number" style="width: 40px;" ng-model="testActor"/>->Actor:
+                <input type="number" style="width: 40px;" ng-model="testReactor"/>
+            </span>
+            <button class="btn btn-warning" style="margin-left: 20px;" ng-click="test1()">Go
+            </button>
+            <br/><br/>
+            <span>Make an Action of Actor:
+                <input type="number" style="width: 40px;" ng-model="testActor2"/>->Actor:
+                <input type="number" style="width: 40px;" ng-model="testReactor2"/>
+            </span>
+            <button class="btn btn-warning" style="margin-left: 20px;" ng-click="test2()">Go
+            </button>
+            <br/><br/>
+            <span>Make an Action of Actor:
+                <input type="number" style="width: 40px;" ng-model="testActor3"/>->Actor:
+                <input type="number" style="width: 40px;" ng-model="testReactor3"/>
+            </span>
+            <button class="btn btn-warning" style="margin-left: 20px;" ng-click="test3()">Go
+            </button>
+            <br/><br/>
+            <input type="number" ng-model="reviveId" style="width: 50px;"/>
+            <button class="btn btn-info" ng-click="revive()">Revive Bee</button>
+            <br/><br/>
+            <button class="btn btn-default" ng-click="fakeOther()">Test other</button>
+        </div>
+    </div>
+</div>
+<script>
+    var SliderBeeSize = $("#bee_size_slider").bootstrapSlider({tooltip: "always"});
+    SliderBeeSize.bootstrapSlider("setValue", LastScaleSize);
+
+    SliderBeeSize.on("slide", function () {
+        LastScaleSize = SliderBeeSize.bootstrapSlider("getValue");
+        gameControl.allActors.forEach(function (actor) {
+            if (actor.type === "b" || actor.type === "f" || actor.type === "h" || actor.type === "a") {
+                actor.model.reScale(LastScaleSize);
+            }
+        });
+    });
+    SliderBeeSize.on("slideStop", function () {
+        LastScaleSize = SliderBeeSize.bootstrapSlider("getValue");
+        gameControl.allActors.forEach(function (actor) {
+            if (actor.type === "b" || actor.type === "f" || actor.type === "h" || actor.type === "a") {
+                actor.model.reScale(LastScaleSize);
+            }
+        });
+    });
+
+    var SliderPheromoneSize = $("#pheromone_size_slider").bootstrapSlider({tooltip: "always"});
+    SliderPheromoneSize.bootstrapSlider("setValue", PheromoneSize);
+
+    SliderPheromoneSize.on("slide", function () {
+        PheromoneSize = SliderPheromoneSize.bootstrapSlider("getValue");
+    });
+    SliderPheromoneSize.on("slideStop", function () {
+        PheromoneSize = SliderPheromoneSize.bootstrapSlider("getValue");
+    });
+
+    var SliderPheromoneOpacity = $("#pheromone_opacity_slider").bootstrapSlider({tooltip: "always"});
+    SliderPheromoneOpacity.bootstrapSlider("setValue", PheromoneOpacity);
+
+    SliderPheromoneOpacity.on("slide", function () {
+        PheromoneOpacity = SliderPheromoneOpacity.bootstrapSlider("getValue");
+    });
+    SliderPheromoneOpacity.on("slideStop", function () {
+        PheromoneOpacity = SliderPheromoneOpacity.bootstrapSlider("getValue");
+    });
+
+
+</script>
