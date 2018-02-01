@@ -41,7 +41,4 @@
 
 ## Demos
 1) Start the BioSim Java server<br/>
-https://www.youtube.com/watch?v=RgT3--2Oo7U
-
-2) BioSim Client Simulation<br/>
-https://www.youtube.com/watch?v=CVW3ei4aUKQ
+https://www.youtube.com/watch?v=3tkUEMHcZ8M
