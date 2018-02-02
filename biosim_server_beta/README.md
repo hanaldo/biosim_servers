@@ -41,7 +41,7 @@
 
 3. Under the blue row ("Group Name") is all the information about all the different game objects, and they are configured by groups. For example, A group with Object Type "bee" and Number of Objects of "4" means there will be 4 bees in the game.
 
-4. Group Name of different objects can be the same, that is how we support two groups of bees with each own hive, but please not we currently only support two groups of bees at the most. e.g.
+4. **Group Name** of different objects can be the same, that is how we support two groups of bees with each own hive, but please not we currently only support two groups of bees at the most. e.g.
 <table>
 <thead><tr><th>Group Name</th><th>Object Type</th><th>Number of Objects</th></tr></thead>
 <tbody>
@@ -54,9 +54,9 @@
 The above table means there will be two groups of bees, and each group has its own hive.
 
 
-5. The X and Y Position means where the objects will be at within the virtual game space at game start.
+5. The **X and Y Position** means where the objects will be at within the virtual game space at game start.
 
-6. Max Nectar is the maximum amount of nectar that one object can carry.
+6. **Max Nectar** is the maximum amount of nectar that one object can carry.
 
 ## Demos
 1) Start the BioSim Java server<br/>
