@@ -14,8 +14,7 @@
 
 5. Click the setting icon (<img width="24" alt="setting_button" src="https://user-images.githubusercontent.com/4184020/35249320-8b24163e-ff9f-11e7-96d1-e581775ab1d3.png"/>) and then go under "Server Control" tab, click "Connect XBee", then plug the XBee (ID: A001) module into your computer as prompted.
 
-<img width="300" alt="xbee prompt" src="https://user-images.githubusercontent.com/4184020/35751022-f9250f2a-0824-11e8-890a-49c40247de7d.png">
-<img width="300" alt="xbee prompt" src="https://user-images.githubusercontent.com/4184020/35751071-155756ee-0825-11e8-896e-7d9045efa628.png">
+<img width="300" alt="xbee prompt" src="https://user-images.githubusercontent.com/4184020/35751022-f9250f2a-0824-11e8-890a-49c40247de7d.png"><img width="300" alt="xbee prompt" src="https://user-images.githubusercontent.com/4184020/35751071-155756ee-0825-11e8-896e-7d9045efa628.png">
 
 <img width="300" alt="beesim_xbee_server_device" src="https://user-images.githubusercontent.com/4184020/35123718-6bdf9b3a-fc71-11e7-83f4-7341f77f3ff3.png"/>
 
@@ -54,7 +53,10 @@
 </table>
 The above table means there will be two groups of bees, and each group has its own hive.
 
+
 5. The X and Y Position means where the objects will be at within the virtual game space at game start.
+
+6. Max Nectar is the maximum amount of nectar that one object can carry.
 
 ## Demos
 1) Start the BioSim Java server<br/>
