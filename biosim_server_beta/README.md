@@ -14,8 +14,8 @@
 
 5. Click the setting icon (<img width="24" alt="setting_button" src="https://user-images.githubusercontent.com/4184020/35249320-8b24163e-ff9f-11e7-96d1-e581775ab1d3.png"/>) and then go under "Server Control" tab, click "Connect XBee", then plug the XBee (ID: A001) module into your computer as prompted.
 
-<img width="200" alt="xbee prompt" src="https://user-images.githubusercontent.com/4184020/35751022-f9250f2a-0824-11e8-890a-49c40247de7d.png">
-<img width="200" alt="xbee prompt" src="https://user-images.githubusercontent.com/4184020/35751071-155756ee-0825-11e8-896e-7d9045efa628.png">
+<img width="300" alt="xbee prompt" src="https://user-images.githubusercontent.com/4184020/35751022-f9250f2a-0824-11e8-890a-49c40247de7d.png">
+<img width="300" alt="xbee prompt" src="https://user-images.githubusercontent.com/4184020/35751071-155756ee-0825-11e8-896e-7d9045efa628.png">
 
 <img width="300" alt="beesim_xbee_server_device" src="https://user-images.githubusercontent.com/4184020/35123718-6bdf9b3a-fc71-11e7-83f4-7341f77f3ff3.png"/>
 
@@ -38,9 +38,18 @@
 ## Configuring a BeeSim game before start
 1. An example game file in MS Excel format is provided. To start a game with the file you just need to click “Create game from file” button and choose this file.
 
-2. The first row in the game file is for defining some overall game properties. The "Space Width" item and the "Space Height" item are used to describe how big the game space is virtually. e.g. "5w x 5h" can be thought of a virtual squre space with 25 grids.
+2. The first row in the game file is for defining some overall game properties. The "Space Width" item and the "Space Height" item are used to describe how big the game space is virtually. e.g. "5 width x 5 height" can be thought of a virtual squre space with 25 grids.
 
-3. Under the blue row ("Group Name") is all the information about all the different game objects, and they are configured by groups. A group with Object Type "bee" and Number of Objects of "4" means there will be 4 bees in the game.
+3. Under the blue row ("Group Name") is all the information about all the different game objects, and they are configured by groups. For example, A group with Object Type "bee" and Number of Objects of "4" means there will be 4 bees in the game.
+
+4. Group Name of different objects can be the same, that is how we support two groups of bees with each own hive, but please not we currently only support two groups of bees at the most. e.g.
+| Group Name | Object Type | Number of Objects |
+| --- | --- |
+| group-1 | bee | 4 |
+| group-1 | hive | 1 |
+| group-2 | bee | 4 |
+| group-2 | hive | 1 |
+The above table means there will be two groups of bees, and each group has its own hive.
 
 ## Demos
 1) Start the BioSim Java server<br/>
