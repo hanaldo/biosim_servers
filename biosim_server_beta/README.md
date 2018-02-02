@@ -43,6 +43,7 @@
 3. Under the blue row ("Group Name") is all the information about all the different game objects, and they are configured by groups. For example, A group with Object Type "bee" and Number of Objects of "4" means there will be 4 bees in the game.
 
 4. Group Name of different objects can be the same, that is how we support two groups of bees with each own hive, but please not we currently only support two groups of bees at the most. e.g.
+
 | Group Name | Object Type | Number of Objects |
 | --- | --- |
 | group-1 | bee | 4 |
