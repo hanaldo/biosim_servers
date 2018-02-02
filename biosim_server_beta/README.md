@@ -1,9 +1,9 @@
 ## Prerequisite
-1. In order to run the BioSim server, you need to install [JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) on your computer, and a fairly modern browser (such as Google Chrome). You can type "java -version" at your terminal to confirm the Java version.
+1. In order to run the BioSim server, you need to install [JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) on your computer, and a fairly modern browser (such as Google Chrome, Firefox, Safari, Microsoft Edge). You can type "java -version" at your terminal to confirm the Java version.
 
-2. Download and uncompress the entire github zip file, this contains the entire BeeSim Java server program.
+2. Download and uncompress the entire github zip file, this contains the entire BioSim Java server program.
 
-## Steps for running the BeeSim Java server
+## Steps for running the BioSim Java server
 1. Open your terminal (Mac) or command prompt (Windows). Make sure you are under the directory of ../jetty/. To easily do this, type the command “cd “ and drag the jetty folder into the prompt window after it.
 
 2. Start the server by typing command "java -jar start.jar".
@@ -12,7 +12,10 @@
 
 4. Open a browser and access the web app at your local IP address, followed by port “:8080” For example: "http://192.168.1.109:8080". You can access the web app at your public IP address from other computers. If you do not have any network connection, you can still always access the web app at "http://127.0.0.1:8080" or "http://localhost:8080".
 
-5. Click the setting icon (<img width="24" alt="setting_button" src="https://user-images.githubusercontent.com/4184020/35249320-8b24163e-ff9f-11e7-96d1-e581775ab1d3.png"/>) and then go under "Server Control" tab, click "Connect", then plug the XBee (ID: A001) module into your computer as prompted.
+5. Click the setting icon (<img width="24" alt="setting_button" src="https://user-images.githubusercontent.com/4184020/35249320-8b24163e-ff9f-11e7-96d1-e581775ab1d3.png"/>) and then go under "Server Control" tab, click "Connect XBee", then plug the XBee (ID: A001) module into your computer as prompted.
+
+<img width="200" alt="xbee prompt" src="https://user-images.githubusercontent.com/4184020/35751022-f9250f2a-0824-11e8-890a-49c40247de7d.png">
+<img width="200" alt="xbee prompt" src="https://user-images.githubusercontent.com/4184020/35751071-155756ee-0825-11e8-896e-7d9045efa628.png">
 
 <img width="300" alt="beesim_xbee_server_device" src="https://user-images.githubusercontent.com/4184020/35123718-6bdf9b3a-fc71-11e7-83f4-7341f77f3ff3.png"/>
 
