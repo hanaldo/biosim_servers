@@ -730,22 +730,24 @@ function RootControl($scope, $upload, $http, $filter) {
     $scope.isPainting = false;
     $scope.isErasing = false;
     $scope.doPaint = function () {
-        game.input.deleteMoveCallback($scope.movecallIndex);
+        game.input.deleteMoveCallback(doPaint);
+        game.input.deleteMoveCallback(doErase);
         $scope.isPainting = !$scope.isPainting;
         if ($scope.isPainting) {
             $scope.isErasing = false;
-            $scope.movecallIndex = game.input.addMoveCallback(doPaint);
+            game.input.addMoveCallback(doPaint);
             $scope.gameCursor = "paint-cursor";
         } else {
             $scope.gameCursor = "all-cursor";
         }
     };
     $scope.doErase = function () {
-        game.input.deleteMoveCallback($scope.movecallIndex);
+        game.input.deleteMoveCallback(doPaint);
+        game.input.deleteMoveCallback(doErase);
         $scope.isErasing = !$scope.isErasing;
         if ($scope.isErasing) {
             $scope.isPainting = false;
-            $scope.movecallIndex = game.input.addMoveCallback(doErase);
+            game.input.addMoveCallback(doErase);
             $scope.gameCursor = "eraser-cursor";
         } else {
             $scope.gameCursor = "all-cursor";
