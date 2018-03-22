@@ -1,0 +1,10 @@
+{
+  "gameIsPaused": true,
+  "current": {
+    "allActors": [],
+    "allActions": []
+  },
+  "world": {},
+  "gameStartTimeWithDelay": 1521736157467,
+  "base": {}
+}
