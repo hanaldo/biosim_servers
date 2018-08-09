@@ -19,6 +19,7 @@ function createWebSocket() {
                             root.xbeeIsOn = true;
                             root.xbeeIsConnecting = false;
                             toastr.success("XBee is connected: " + items[1]);
+                            root.xbeeName = items[1];
                         } else {
                             root.xbeeIsOn = false;
                             root.xbeeIsConnecting = false;
