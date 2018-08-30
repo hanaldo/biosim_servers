@@ -14,8 +14,15 @@ function createWebSocket() {
                 if (received_msg.indexOf("[") > -1 && received_msg.indexOf("]") > -1) {
                     var ids = JSON.parse(received_msg);
                     ids.forEach(function (id) {
-                        $("#ids_box").append("<input type='checkbox' class='hive' value='" + id + "'>Hive " + id + "<br/>");
+                        $("#ids_box").append("<input type='checkbox' class='hive' value='" + id + "'>" + HomeName + "  " + id + "<br/>");
                     });
+                } else if (received_msg.startsWith("mode")) {
+                    Mode = received_msg.split("@")[1];
+                    if (Mode === "ant") {
+                        HomeName = "Bivouac";
+                    } else if (Mode === "bee") {
+                        HomeName = "Hive";
+                    }
                 } else {
                     var hive = JSON.parse(received_msg);
 
@@ -67,11 +74,20 @@ function changeAmountCool(p, img) {
 }
 
 function MyPaper(x, y, name, beeDead, beeIn, beeOut) {
+    var home1image = "";
+    var home2image = "";
+    if (Mode === "ant") {
+        home1image = "hive_view_top2.png";
+        home2image = "hive_view_top3.png";
+    } else if (Mode === "bee") {
+        home1image = "home_view_top1b.png";
+        home2image = "home_view_top2b.png";
+    }
     var paper = Raphael(x, y, 300, 400);
     //var img1 = paper.image("images/hive_view_bottom.png", 0, 0, 300, 300);
-    var hiveImage = "images/hive_view_top2.png";
+    var hiveImage = "images/" + home1image;
     if (name !== "g1") {
-        hiveImage = "images/hive_view_top3.png";
+        hiveImage = "images/" + home2image;
     }
     var img2 = paper.image(hiveImage, 0, 0, 300, 300);
     var img3 = paper.image("images/hive_view_bar_bot.png", 0, 0, 50, 300);
