@@ -46,8 +46,12 @@ app.on('ready', function() {
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function() {
+  console.log("Bye BioSim");
+  app.quit();
+});
+
+app.on("quit", function() {
   console.log("Kill javaProcess");
   javaProcess.kill("SIGINT");
   javaProcess = null;
-  app.quit();
 });
