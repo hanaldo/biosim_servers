@@ -4,6 +4,11 @@
         <title>BioSim</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>if (typeof module === 'object') {
+                window.module = module;
+                module = undefined;
+            }</script>
+
         <script src="javascripts/jquery-2.1.1.min.js"></script>
         <script src="javascripts/jquery-ui.min.js"></script>
         <script src="javascripts/download.min.js"></script>
@@ -136,13 +141,15 @@
         <script src="game_model_sky.js"></script>
         <script src="game_model_fountain.js"></script>
         <script src="game_model_hive_exit.js"></script>
+
+        <script>if (window.module)
+                module = window.module;</script>
         <link href="main_style.css" rel="stylesheet" type="text/css"/>
     </head>
     <body ng-app="BioSim" ng-controller="RootControl" id="root_control">
         <div class="row" style="width: 100%;">
             <div class="col-xs-2"></div>
             <div class="col-xs-8">
-                <hr/>
                 <img src="images/biosim_title.png" style="width: 250px; display:block; margin:auto;"/>
                 <br/>
                 <hr/>
@@ -163,7 +170,7 @@
                 </button>
                 <button class="btn btn-info" style="float: right; margin-right: 10px;" ng-click="enterSimMode()"
                         ng-disabled="isBeeSignMode()">
-                    <span>Simulation: </span><span ng-if="isBeeSignMode()">ON</span><span ng-if="!isBeeSignMode()">OFF</span>
+                    <span>Ant Simulation: </span><span ng-if="isBeeSignMode()">ON</span><span ng-if="!isBeeSignMode()">OFF</span>
                 </button>
                 <button class="btn btn-info" style="float: right; margin-right: 20px;" ng-click="listActors()">
                     <span class="glyphicon glyphicon-list"></span>
@@ -172,7 +179,7 @@
                 <button class="btn btn-primary" style="float: right; margin-right: 20px;" ng-click="reviveAllBees()">ReviveAll
                 </button>
                 <br/>
-                <hr/>
+                <br/>
             </div>
             <div class="col-xs-2"></div>
         </div>
@@ -273,66 +280,66 @@
         </div>
         <div id="hive_stats_area"></div>
         <script>
-            $("#menu_all").click(function () {
-                BootstrapDialog.show({
-                    type: BootstrapDialog.TYPE_PRIMARY,
-                    title: "BioSim",
-                    message: $("<div></div>").load("game_ui_main_control.html"),
-                    cssClass: "setting-dialog",
-                    draggable: true,
-                    onshown: function () {
-                        var content = $("#main_control");
-                        angular.element(document.getElementById("root_control")).injector().invoke(function ($compile) {
-                            var scope = angular.element(content).scope();
-                            $compile(content)(scope);
-                            scope.$apply();
+                    $("#menu_all").click(function () {
+                        BootstrapDialog.show({
+                            type: BootstrapDialog.TYPE_PRIMARY,
+                            title: "BioSim",
+                            message: $("<div></div>").load("game_ui_main_control.html"),
+                            cssClass: "setting-dialog",
+                            draggable: true,
+                            onshown: function () {
+                                var content = $("#main_control");
+                                angular.element(document.getElementById("root_control")).injector().invoke(function ($compile) {
+                                    var scope = angular.element(content).scope();
+                                    $compile(content)(scope);
+                                    scope.$apply();
+                                });
+                            }
                         });
-                    }
-                });
-            });
-
-            $("#button_save_replay").click(function () {
-                BootstrapDialog.show({
-                    type: BootstrapDialog.TYPE_SUCCESS,
-                    title: "Saving Replay...",
-                    message: $("<div></div>").load("game_ui_save_replay.html"),
-                    cssClass: "setting-dialog",
-                    draggable: true,
-                    onshown: function () {
-                        var content = $("#replay_name_control");
-                        angular.element(document.getElementById("root_control")).injector().invoke(function ($compile) {
-                            var scope = angular.element(content).scope();
-                            $compile(content)(scope);
-
-                            scope.formatPostfix();
-                            scope.$apply();
-                        });
-                    }
-                });
-            });
-
-            $("#button_list_replay").click(function () {
-                getRootScope().loadReplayList(function () {
-                    BootstrapDialog.show({
-                        type: BootstrapDialog.TYPE_SUCCESS,
-                        title: "Saved Replays",
-                        message: $("<div></div>").load("game_ui_replay_list.html"),
-                        cssClass: "setting-dialog",
-                        draggable: true,
-                        onshown: function () {
-                            var content = $("#replay_list_control");
-                            angular.element(document.getElementById("root_control")).injector().invoke(function ($compile) {
-                                var scope = angular.element(content).scope();
-                                $compile(content)(scope);
-                                scope.$apply();
-                            });
-                        }
                     });
-                });
-            });
 
-            $("#local_replay_jumper").hide();
-            $("#replay_speed_picker").hide();
+                    $("#button_save_replay").click(function () {
+                        BootstrapDialog.show({
+                            type: BootstrapDialog.TYPE_SUCCESS,
+                            title: "Saving Replay...",
+                            message: $("<div></div>").load("game_ui_save_replay.html"),
+                            cssClass: "setting-dialog",
+                            draggable: true,
+                            onshown: function () {
+                                var content = $("#replay_name_control");
+                                angular.element(document.getElementById("root_control")).injector().invoke(function ($compile) {
+                                    var scope = angular.element(content).scope();
+                                    $compile(content)(scope);
+
+                                    scope.formatPostfix();
+                                    scope.$apply();
+                                });
+                            }
+                        });
+                    });
+
+                    $("#button_list_replay").click(function () {
+                        getRootScope().loadReplayList(function () {
+                            BootstrapDialog.show({
+                                type: BootstrapDialog.TYPE_SUCCESS,
+                                title: "Saved Replays",
+                                message: $("<div></div>").load("game_ui_replay_list.html"),
+                                cssClass: "setting-dialog",
+                                draggable: true,
+                                onshown: function () {
+                                    var content = $("#replay_list_control");
+                                    angular.element(document.getElementById("root_control")).injector().invoke(function ($compile) {
+                                        var scope = angular.element(content).scope();
+                                        $compile(content)(scope);
+                                        scope.$apply();
+                                    });
+                                }
+                            });
+                        });
+                    });
+
+                    $("#local_replay_jumper").hide();
+                    $("#replay_speed_picker").hide();
         </script>
 
     </body>
