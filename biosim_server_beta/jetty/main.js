@@ -36,30 +36,15 @@ app.on("ready", function() {
     mainWindow = null
   });
 
-  // mainWindow.on("show", function() {
-  //   dialog.showMessageBox(mainWindow, {
-  //     type: "info",
-  //     buttons: ["OK"],
-  //     title: "App Path",
-  //     message: path
-  //   });
-  // });
-
   javaProcess = cp.exec("java -jar start.jar", {
     cwd: app.getAppPath()
   }, (error, stdout, stderr) => {
     console.log("Java command finished");
-    // dialog.showMessageBox(mainWindow, {
-    //   type: "info",
-    //   buttons: ["OK"],
-    //   title: "App Path",
-    //   message: "Java command finished"
-    // });
   });
 
-  javaProcess.stderr.pipe(fs.createWriteStream(path + "/log.txt", {
-    flags: "w"
-  }));
+  // javaProcess.stderr.pipe(fs.createWriteStream(path + "/log.txt", {
+  //   flags: "w"
+  // }));
 
   javaProcess.stdout.on("data", function(data) {
     if (data.includes("Thank you! You server is ready")) {
