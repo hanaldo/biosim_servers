@@ -1,68 +1,11 @@
+Running the BioSim Java server from commandline
+===============================================
+Make sure you have JDK 8 (Java) installed, and a fairly modern browser (such as Google Chrome, Firefox, Safari, Microsoft Edge).
 
-JETTY
-=====
-The Jetty project is a 100% Java HTTP Server, HTTP Client
-and Servlet Container from the eclipse foundation
+Open your terminal (Mac) or command prompt (Windows).
 
-  http://www.eclipse.org/jetty/
+Make sure you are under the directory of ../jetty/. To easily do this, type the command “cd “ and drag the jetty folder into the prompt window after it.
 
-Jetty is open source and is dual licensed using the Apache 2.0 and
-Eclipse Public License 1.0.   You may choose either license when
-distributing Jetty.
+After that the terminal will prompt you the sever is ready such as: "Thank you! You server is ready."
 
-
-RUNNING JETTY
-=============
-The run directory is either the top-level of a binary release
-or jetty-distribution/target/distribution directory when built from
-source.
-
-To run with the default options:
-
-  $ cd demo-base
-  $ java -jar ../start.jar
-
-To see the available options and the default arguments
-provided by the start.ini file:
-
-  $ java -jar /path/to/start.jar --help
-
-
-Many Jetty features can be enabled by using the --module command
-For example:
-
-  $ cd mybase
-  $ java -jar /path/to/start.jar --module=https,deploy
-
-Will enable the https and deploy modules (and their transitive
-dependencies) temporarily for this specific run of Jetty.
-
-To see what modules are available
-
-  $ java -jar /path/to/start.jar --list-modules
-
-
-
-JETTY BASE
-==========
-
-The jetty.base property is a property that can be defined on the
-command line (defaults to what your java 'user.dir' property points to)
-Jetty's start.jar mechanism will configure your jetty instance from
-the configuration present in this jetty.base directory.
-
-Example setup:
-
-# Create the base directory
-  
-  $ mkdir mybase
-  $ cd mybase
-  
-# Initialize the base directory's start.ini and needed directories
-
-  $ java -jar /path/to/jetty-dist/start.jar --add-to-start=http,deploy
-  
-# Run this base directory configuration
- 
-  $ java -jar /path/to/jetty-dist/start.jar
-
+Open a browser and access the web app at your local IP address, followed by port “:8080” For example: "http://192.168.1.109:8080". You can access the web app at your public IP address from other computers. If you do not have any network connection, you can still always access the web app at "http://127.0.0.1:8080" or "http://localhost:8080".
