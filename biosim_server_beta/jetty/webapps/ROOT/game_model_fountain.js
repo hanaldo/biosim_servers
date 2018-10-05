@@ -14,6 +14,11 @@ function Fountain(game, actor, x, y) {
     linkDeviceIcon.inputEnabled = true;
     linkDeviceIcon.events.onInputDown.add(function () {
         ws.send("@searchOne#" + actor.id);
+        var root = getRootScope();
+        if (!root.xbeeIsOn) {
+            toastr.error("You must connect your XBee module first");
+            return;
+        }
     });
 
     var text = game.add.text(x, y, actor.id.toString(), {fill: "#fff", stroke: "#000", strokeThickness: 3});

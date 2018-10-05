@@ -114,8 +114,8 @@ function createWebSocket() {
                         if (action.temp) {
                             dialog = BootstrapDialog.show({
                                 type: BootstrapDialog.TYPE_INFO,
-                                title: "Action required!",
-                                message: "Please touch a passive device",
+                                title: "Link device for Actor " + action.actor,
+                                message: "Please touch a passive device (i.e. a RFID tag)",
                                 cssClass: "setting-dialog"
                             });
                         } else {

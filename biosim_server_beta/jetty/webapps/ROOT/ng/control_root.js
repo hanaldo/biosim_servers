@@ -94,8 +94,6 @@ function RootControl($scope, $upload, $http, $filter) {
      UI controls
      */
     $scope.centralGamePause = false;
-    $scope.showSunButton = false;
-    $scope.showSnowButton = true;
 
     if (ShowActorGroup) {
         $scope.showGroupButton = "Hide Groups";
@@ -475,7 +473,7 @@ function RootControl($scope, $upload, $http, $filter) {
         var r = JSON.parse(lastJsonFile);
         var timeLong = r.world.startTime;
         var dateString = $filter("date")(timeLong, "yyyy_M_d_HHmm");
-        $scope.replayPostfix = "." + dateString + ".replay";
+        $scope.replayPostfix = "." + $scope.gameHolder + "." + dateString + ".replay";
     };
     $scope.cancelReplayName = function () {
         BootstrapDialog.closeAll();

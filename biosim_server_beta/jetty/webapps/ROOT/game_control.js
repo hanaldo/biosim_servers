@@ -214,18 +214,8 @@ function GameControl() {
         var weather = null;
         if (lastAction !== null) {
             weather = lastAction.worldCopy.weather;
-            if (this.mode === "live") {
-                if (weather === "makeSun") {
-                    centralGameIsSun();
-                } else {
-                    centralGameIsSnow();
-                }
-            }
         } else {
             weather = "makeSun";
-            if (this.mode === "live") {
-                centralGameIsSun();
-            }
         }
         this.sky.model = new Sky(game, weather, 125, 0);
         this.sky.type = "sky";
@@ -456,10 +446,8 @@ function GameControl() {
             this.sky.model.makeRain();
         } else if (nextAction.type === "makeSun") {
             this.sky.model.makeSun();
-            centralGameIsSun();
         } else if (nextAction.type === "makeSnow") {
             this.sky.model.makeSnow();
-            centralGameIsSnow();
         } else if (nextAction.type === "reduceNectar") {
             for (i = 0; i < nextAction.objectsCopy.length; i++) {
                 var actorLocal2 = this.idMap.get(nextAction.objectsCopy[i].id);

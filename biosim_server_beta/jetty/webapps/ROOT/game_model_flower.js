@@ -19,6 +19,11 @@ function Flower(game, actor, x, y, spaceW) {
     linkDeviceIcon.scale.setTo(0.5);
     linkDeviceIcon.inputEnabled = true;
     linkDeviceIcon.events.onInputDown.add(function () {
+        var root = getRootScope();
+        if (!root.xbeeIsOn) {
+            toastr.error("You must connect your XBee module first");
+            return;
+        }
         ws.send("@searchOne#" + actor.id);
     });
 

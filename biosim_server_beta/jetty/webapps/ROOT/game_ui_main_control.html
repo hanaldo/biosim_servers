@@ -3,7 +3,7 @@
         <li class="active"><a href="#game-details" data-toggle="tab">Game Details</a></li>
         <li><a href="#server-control" data-toggle="tab">Server Control</a></li>
         <li><a href="#display-control" data-toggle="tab">Display Control</a></li>
-        <li><a href="#simulation-control" data-toggle="tab">Simulation Control</a></li>
+        <li><a href="#simulation-control" data-toggle="tab">Device Control</a></li>
         <li><a href="#other-control" data-toggle="tab">Other Control</a></li>
         <li><a href="#developer-control" data-toggle="tab">Developer Control</a></li>
     </ul>
@@ -90,13 +90,6 @@
                 Devices
             </button>
             <br/><br/>
-            <button class="btn btn-info" ng-click="makeSun()" ng-disabled="cannotStartLiveReplay">Make Sunny
-            </button>
-            <button class="btn btn-info" ng-click="makeRain()" ng-disabled="cannotStartLiveReplay">Make Rainy
-            </button>
-            <button class="btn btn-info" ng-click="makeSnow()" ng-disabled="cannotStartLiveReplay">Make Snowy
-            </button>
-            <br/><br/>
             <button class="btn btn-primary" ng-click="stopPositionServer()">
                 Stop Positioning Server
             </button>
@@ -107,34 +100,35 @@
         </div>
         <div class="tab-pane" id="other-control">
             <div style="margin-top: 50px;"></div>
+            <span style="color: #ff0000; font-size: 24px;">Under development...</span><br/>
             <a href="mini_game_control.html" class="btn btn-default" target="_blank">Go to Mini-Game
                 Center</a>
         </div>
         <div class="tab-pane" id="developer-control">
             <div style="margin-top: 50px;"></div>
-            <span>Make an Action of Actor:
-                <input type="number" style="width: 40px;" ng-model="testActor"/>->Actor:
+            <span>Actor:
+                <input type="number" style="width: 40px;" ng-model="testActor"/> touches Actor:
                 <input type="number" style="width: 40px;" ng-model="testReactor"/>
             </span>
-            <button class="btn btn-warning" style="margin-left: 20px;" ng-click="test1()">Go
+            <button class="btn btn-warning" style="margin-left: 20px;" ng-click="test1()">Touch
             </button>
             <br/><br/>
-            <span>Make an Action of Actor:
-                <input type="number" style="width: 40px;" ng-model="testActor2"/>->Actor:
+            <span>Actor:
+                <input type="number" style="width: 40px;" ng-model="testActor2"/> touches Actor:
                 <input type="number" style="width: 40px;" ng-model="testReactor2"/>
             </span>
-            <button class="btn btn-warning" style="margin-left: 20px;" ng-click="test2()">Go
+            <button class="btn btn-warning" style="margin-left: 20px;" ng-click="test2()">Touch
             </button>
             <br/><br/>
             <span>Make an Action of Actor:
-                <input type="number" style="width: 40px;" ng-model="testActor3"/>->Actor:
+                <input type="number" style="width: 40px;" ng-model="testActor3"/> touches Actor:
                 <input type="number" style="width: 40px;" ng-model="testReactor3"/>
             </span>
             <button class="btn btn-warning" style="margin-left: 20px;" ng-click="test3()">Go
             </button>
             <br/><br/>
+            <button class="btn btn-info" ng-click="revive()">Revive Actor: </button>
             <input type="number" ng-model="reviveId" style="width: 50px;"/>
-            <button class="btn btn-info" ng-click="revive()">Revive Bee</button>
             <br/><br/>
             <button class="btn btn-default" ng-click="fakeOther()">Test other</button>
         </div>

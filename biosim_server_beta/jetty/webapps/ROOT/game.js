@@ -103,6 +103,7 @@ function preload() {
     game.load.audio("yes", "sound/yes.mp3");
     game.load.audio("eat", "sound/eat.mp3");
     game.load.audio("rain", "sound/rain.mp3");
+    game.load.audio("snow", "sound/snow.mp3");
 
     gameControl = new GameControl();
 }

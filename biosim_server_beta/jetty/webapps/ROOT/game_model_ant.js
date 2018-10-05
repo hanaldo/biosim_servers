@@ -12,6 +12,15 @@ function Ant(game, actor, x, y) {
 
     var linkDeviceIcon = game.add.sprite(x, y, "no-link");
     linkDeviceIcon.scale.setTo(0.5);
+    linkDeviceIcon.inputEnabled = true;
+    linkDeviceIcon.events.onInputDown.add(function () {
+        var root = getRootScope();
+        if (!root.xbeeIsOn) {
+            toastr.error("You must connect your XBee module first");
+            return;
+        }
+        ws.send("@searchOne#" + actor.id);
+    });
 
     var arrowIcon = game.add.sprite(x, y, "arrow");
     arrowIcon.scale.setTo(0.5);
@@ -262,8 +271,8 @@ function Ant(game, actor, x, y) {
 
         if (groupIcon !== null) {
             if (ShowActorGroup) {
-                groupIcon.x = ant.x;
-                groupIcon.y = ant.y;
+                groupIcon.x = ant.x - 50;
+                groupIcon.y = ant.y - 50;
             }
             groupIcon.exists = ShowActorGroup;
         }
@@ -333,6 +342,7 @@ function Ant(game, actor, x, y) {
         game.world.bringToTop(text);
         game.world.bringToTop(backShape);
         game.world.bringToTop(energyShape);
+        game.world.bringToTop(linkDeviceIcon);
     };
 
     function makeEnergyShape() {

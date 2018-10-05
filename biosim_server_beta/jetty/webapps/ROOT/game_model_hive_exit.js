@@ -16,6 +16,11 @@ function HiveExit(game, actor, x, y) {
     linkDeviceIcon.scale.setTo(0.5);
     linkDeviceIcon.inputEnabled = true;
     linkDeviceIcon.events.onInputDown.add(function () {
+        var root = getRootScope();
+        if (!root.xbeeIsOn) {
+            toastr.error("You must connect your XBee module first");
+            return;
+        }
         ws.send("@searchOne#" + actor.id);
     });
 

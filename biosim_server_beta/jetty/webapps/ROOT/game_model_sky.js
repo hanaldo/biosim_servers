@@ -22,6 +22,8 @@ function Sky(game, weather, x, y) {
     rain.on = false;
     var rainSound = game.add.audio("rain");
 
+    var snowSound = game.add.audio("snow");
+
     var max = 0;
     var front_emitter;
     var mid_emitter;
@@ -59,11 +61,15 @@ function Sky(game, weather, x, y) {
 
     function changeWindDirection() {
         var multi = Math.floor((max + 200) / 4),
-            frag = (Math.floor(Math.random() * 100) - multi);
+                frag = (Math.floor(Math.random() * 100) - multi);
         max = max + frag;
 
-        if (max > 200) max = 150;
-        if (max < -200) max = -150;
+        if (max > 200) {
+            max = 150;
+        }
+        if (max < -200) {
+            max = -150;
+        }
 
         setXSpeed(back_emitter, max);
         setXSpeed(mid_emitter, max);
@@ -83,6 +89,7 @@ function Sky(game, weather, x, y) {
         sun.destroy();
         rain.destroy();
         rainSound.destroy();
+        snowSound.destroy();
         back_emitter.destroy();
         mid_emitter.destroy();
         front_emitter.destroy();
@@ -91,6 +98,7 @@ function Sky(game, weather, x, y) {
     this.makeSun = function () {
         rain.on = false;
         rainSound.stop();
+        snowSound.stop();
         back_emitter.on = false;
         mid_emitter.on = false;
         front_emitter.on = false;
@@ -100,6 +108,7 @@ function Sky(game, weather, x, y) {
     };
 
     this.makeRain = function () {
+        snowSound.stop();
         sun.x = game.world.width;
         sun.y = game.world.height;
         back_emitter.on = false;
@@ -112,10 +121,10 @@ function Sky(game, weather, x, y) {
     };
 
     this.makeSnow = function () {
+        rainSound.stop();
         sun.x = game.world.width;
         sun.y = game.world.height;
         rain.on = false;
-        rainSound.stop();
 
         changeWindDirection();
         back_emitter.start(false, 14000, 20);
@@ -124,6 +133,7 @@ function Sky(game, weather, x, y) {
         game.world.bringToTop(back_emitter);
         game.world.bringToTop(mid_emitter);
         game.world.bringToTop(front_emitter);
+        snowSound.play("", 0, 1, true);
     };
 
     this.update = function () {

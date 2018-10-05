@@ -109,20 +109,6 @@
 
                 gameControl.reArrangeDisplay();
             }
-
-            function centralGameIsSun() {
-                var scope = getRootScope();
-                scope.showSunButton = false;
-                scope.showSnowButton = true;
-                scope.$apply();
-            }
-
-            function centralGameIsSnow() {
-                var scope = getRootScope();
-                scope.showSunButton = true;
-                scope.showSnowButton = false;
-                scope.$apply();
-            }
         </script>
         <script src="ng/control_root.js"></script>
         <script src="javascripts/websocket_index.js"></script>
@@ -255,13 +241,17 @@
 
                 <!--For Other Info-->
                 <span id="timestamp_display" style="font-size: 28px; font-weight: bolder; margin-left: 10px;"></span>
-                <button class="btn btn-primary" ng-click="makeSun()"
-                        ng-show="showSunButton && nowLiveMode">
-                    <span class="glyphicon glyphicon-certificate"></span>
+                <button class="btn btn-success" ng-click="makeSun()"
+                        ng-show="nowLiveMode">
+                    <span>Sunny</span>
                 </button>
-                <button class="btn btn-primary" ng-click="makeSnow()"
-                        ng-show="showSnowButton && nowLiveMode">
-                    <span class="glyphicon glyphicon-cloud"></span>
+                <button class="btn btn-success" ng-click="makeRain()"
+                        ng-show="nowLiveMode">
+                    <span>Rainy</span>
+                </button>
+                <button class="btn btn-success" ng-click="makeSnow()"
+                        ng-show="nowLiveMode">
+                    <span>Snowy</span>
                 </button>
 
                 <!--For Drawing-->
