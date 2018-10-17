@@ -1,3 +1,27 @@
+if ("WebSocket" in window) {
+    var hiveViewWS;
+    hiveViewWS = new WebSocket("ws://" + window.location.host + "/hiveView");
+    hiveViewWS.onopen = function () {
+        console.log("hiveViewWS is open...");
+    };
+    hiveViewWS.onmessage = function (evt) {
+        try {
+            var received_msg = evt.data;
+
+            if (received_msg.indexOf("[") > -1 && received_msg.indexOf("]") > -1) {
+                return;
+            } else if (received_msg.startsWith("mode")) {
+                return;
+            } else {
+                var hive = JSON.parse(received_msg);
+                updateHiveChartInGame(hive.name, hive.beeDead, hive.beeIn, hive.beeOut);
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    };
+}
+
 var documentLastX, documentLastY;
 
 $(document).mousemove(function (event) {
@@ -14,83 +38,35 @@ function addHiveStatsArea(id) {
 var AllHiveCharts = new HashMap();
 var AllHiveStats = new HashMap();
 
-function updateHiveChart(id) {
+function updateHiveChartInGame(id, beeDead, beeIn, beeOut) {
     if (AllHiveCharts.has(id)) {
-        var data = AllHiveStats.get(id);
-        //console.log("updateHiveChart: " + JSON.stringify(data));
         var chart = AllHiveCharts.get(id);
-        chart.segments[0].value = data[0];
-        chart.segments[1].value = data[1];
-        chart.segments[2].value = data[2];
+        chart.segments[0].value = beeDead;
+        chart.segments[1].value = beeIn;
+        chart.segments[2].value = beeOut;
         chart.update();
     }
+    if (AllHiveStats.has(id)) {
+        var data = AllHiveStats.get(id);
+        data[0] = beeDead;
+        data[1] = beeIn;
+        data[2] = beeOut;
+    }
 }
 
-function initHiveStats(beeActor) {
+function initHiveStats(actor) {
     try {
-        if (!AllHiveStats.has(beeActor.name)) {
-            AllHiveStats.set(beeActor.name, [0, 0, 0]);
+        if (!AllHiveStats.has(actor.name)) {
+            AllHiveStats.set(actor.name, [0, 0, 0]);
         }
-        var data = AllHiveStats.get(beeActor.name);
-        if (beeActor.dyProps.currentEnergy <= 0) {
+        var data = AllHiveStats.get(actor.name);
+        if (actor.dyProps.currentEnergy <= 0) {
             data[0] += 1;
-        } else if (beeActor.dyProps.inHive) {
+        } else if (actor.dyProps.inHive) {
             data[1] += 1;
-        } else if (!beeActor.dyProps.inHive) {
+        } else if (!actor.dyProps.inHive) {
             data[2] += 1;
         }
-    } catch (e) {
-        console.error(e);
-    }
-}
-
-function chartWhenTouchHive(beeActor) {
-    try {
-        var data = AllHiveStats.get(beeActor.name);
-        data[1] += 1;
-        data[2] -= 1;
-        updateHiveChart(beeActor.name);
-    } catch (e) {
-        console.error(e);
-    }
-}
-
-function chartWhenBeeDie(beeActor) {
-    try {
-        var data = AllHiveStats.get(beeActor.name);
-        data[0] += 1;
-        if (beeActor.dyProps.inHive) {
-            data[1] -= 1;
-        } else {
-            data[2] -= 1;
-        }
-        updateHiveChart(beeActor.name);
-    } catch (e) {
-        console.error(e);
-    }
-}
-
-function chartWhenBeeRevive(beeActor) {
-    try {
-        var data = AllHiveStats.get(beeActor.name);
-        data[0] -= 1;
-        if (beeActor.dyProps.inHive) {
-            data[1] += 1;
-        } else {
-            data[2] += 1;
-        }
-        updateHiveChart(beeActor.name);
-    } catch (e) {
-        console.error(e);
-    }
-}
-
-function chartWhenBeeOut(beeActor) {
-    try {
-        var data = AllHiveStats.get(beeActor.name);
-        data[1] -= 1;
-        data[2] += 1;
-        updateHiveChart(beeActor.name);
     } catch (e) {
         console.error(e);
     }
@@ -98,6 +74,10 @@ function chartWhenBeeOut(beeActor) {
 
 function showHiveStats(id) {
     var data = AllHiveStats.get(id);
+    if (!data) {
+        toastr.error("No data");
+        return;
+    }
     var pieData = [
         {
             value: data[0],
@@ -131,12 +111,12 @@ function showHiveStats(id) {
 
         var ctx = $("#chart_area_" + id).get(0).getContext("2d");
         var chart = new Chart(ctx).Doughnut(pieData,
-            {
-                onAnimationComplete: function () {
-                    this.showTooltip(this.segments, true);
-                },
-                tooltipEvents: []
-            });
+                {
+                    onAnimationComplete: function () {
+                        this.showTooltip(this.segments, true);
+                    },
+                    tooltipEvents: []
+                });
         AllHiveCharts.set(id, chart);
         AllHiveStats.set(id, data);
     });

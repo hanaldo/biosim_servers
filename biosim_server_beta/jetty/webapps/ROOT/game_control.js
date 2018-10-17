@@ -188,7 +188,7 @@ function GameControl() {
         //re-iterate to assign rest boxes and hive stats and bee position
         this.allActors.forEach(function (actor, index) {
             if (actor.type === "b") {
-                initHiveStats(actor);
+                initHiveStats(actor);//initiate pie chart data
 
                 if (actor.dyProps.positionId) {
                     var positionActor = map.get(actor.dyProps.positionId);
@@ -206,6 +206,9 @@ function GameControl() {
                     actor.model.sprite.y = box.boxY + 50;
                     actor.model.sprite.body.velocity.setTo(50 + index * 10, 50 + index * 10);
                 }
+            }
+            if (actor.type === "a") {
+                initHiveStats(actor);//initiate pie chart data
             }
         });
 
@@ -401,9 +404,7 @@ function GameControl() {
                 }
             }
             if (reactor.type === "h") {
-                if (showVisualFeedback) {
-                    //chartWhenTouchHive(actor);
-                } else {
+                if (!showVisualFeedback) {
                     console.log("positionId: " + actor.dyProps.positionId);
                     console.log("action id: " + reactor.id);
                     actor.model.sprite.x = reactor.model.sprite.x - 30;
@@ -429,7 +430,6 @@ function GameControl() {
                 if (actorLocal.dyProps.currentEnergy <= 0) {
                     if (showVisualFeedback) {
                         toastr.info("Actor died: (" + actorLocal.id + ")");
-                        //chartWhenBeeDie(actorLocal);
                     }
                 }
             }
@@ -463,7 +463,6 @@ function GameControl() {
             }
             if (showVisualFeedback) {
                 toastr.info("Actor is revived");
-                //chartWhenBeeRevive(actor);
             }
         } else if (nextAction.type === "beeOut") {
             if (actor.type === "b") {
@@ -479,7 +478,6 @@ function GameControl() {
                 if (ShowGameInfo) {
                     toastr.info("Actor is out");
                 }
-                //chartWhenBeeOut(actor);
             }
         } else if (nextAction.type === "checkTrack") {
             trailContext.clearRect(0, 0, GameWidth, GameHeight);

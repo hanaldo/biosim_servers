@@ -3,7 +3,7 @@ function createWebSocket() {
         var ws;
         ws = new WebSocket("ws://" + window.location.host + "/hiveView");
         ws.onopen = function () {
-            console.log("Socket chat is open...");
+            console.log("HiveView Socket is open...");
             WS.send("@listHive");
         };
         ws.onmessage = function (evt) {
