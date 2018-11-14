@@ -152,6 +152,10 @@ function create() {
     trailContext = trailBitmap.context;
 
     LineTest = new Phaser.Line(100, 100, 600, 600);
+
+    game.input.touch.touchEndCallback = function () {
+        getRootScope().penDown = false;
+    };
 }
 
 function updateCounter() {

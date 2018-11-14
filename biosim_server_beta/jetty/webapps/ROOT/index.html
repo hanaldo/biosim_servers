@@ -36,6 +36,7 @@
 
         <script src="javascripts/chart/Chart.min.js"></script>
         <script src="javascripts/my_chart.js"></script>
+        <script src="javascripts/jscolor.js"></script>
         <script>
             console.log(window.location.host);
             angular.module("BioSim", ["angularFileUpload"]);
@@ -264,6 +265,7 @@
                 <button class="btn btn-default" ng-click="clearPaint()">
                     <span class="glyphicon glyphicon-trash"></span>
                 </button>
+                <input ng-show="isPainting" class="jscolor" value="ff0000" style="width: 50px; font-size: 10px;" onchange="updatePaintColor(this.jscolor)"/>
                 <hr/>
             </div>
             <div class="col-xs-2"></div>

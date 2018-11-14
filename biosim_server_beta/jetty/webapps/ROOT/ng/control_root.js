@@ -684,34 +684,34 @@ function RootControl($scope, $upload, $http, $filter) {
         });
     };
 
-    var brushColor = "#ff0000";
-    var penDown = false;
+    $scope.brushColor = "#ff0000";
+    $scope.penDown = false;
 
     function doPaint(pointer, x, y) {
-        if (penDown) {
+        if ($scope.penDown) {
             if (pointer.isDown) {
                 paintContext.lineTo(x, y);
                 paintContext.stroke();
             } else if (pointer.isUp) {
-                penDown = false;
+                $scope.penDown = false;
             }
         } else {
             if (pointer.isDown) {
                 game.world.bringToTop(paintSprite);
-                paintContext.strokeStyle = brushColor;
+                paintContext.strokeStyle = $scope.brushColor;
                 paintContext.lineWidth = 10;
                 paintContext.beginPath();
-                penDown = true;
+                $scope.penDown = true;
             }
         }
     }
 
     function doErase(pointer, x, y) {
-        if (penDown) {
+        if ($scope.penDown) {
             if (pointer.isDown) {
                 paintContext.clearRect(x, y, 40, 40);
             } else if (pointer.isUp) {
-                penDown = false;
+                $scope.penDown = false;
             }
         } else {
             if (pointer.isDown) {
@@ -719,7 +719,7 @@ function RootControl($scope, $upload, $http, $filter) {
                 //paintContext.fillStyle = "#00ff00";
                 //paintContext.fillRect(x, y, 40, 40);
                 paintContext.clearRect(x, y, 40, 40);
-                penDown = true;
+                $scope.penDown = true;
             }
         }
     }
@@ -758,3 +758,6 @@ function RootControl($scope, $upload, $http, $filter) {
 
 var endReplay, setGameStartTime;
 
+function updatePaintColor(jscolor) {
+    getRootScope().brushColor = "#" + jscolor;
+}
