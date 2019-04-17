@@ -57,5 +57,5 @@ The above table means there will be two groups of bees, and each group has its o
 6. **Max Nectar** is the maximum amount of nectar that one object can carry.
 
 ## Demos
-1) Start the BioSim Java server<br/>
-https://www.youtube.com/watch?v=3tkUEMHcZ8M
+1. Start the BioSim server in MacOS<br/>
+https://www.youtube.com/watch?v=BaBwmojWeyA
