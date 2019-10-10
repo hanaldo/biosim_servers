@@ -4,7 +4,7 @@ In order to run the position server, you need to install [JDK 8](http://www.orac
 <img width="600" alt="biosim_position" src="https://user-images.githubusercontent.com/4184020/29588169-7f68b336-875e-11e7-8dc2-1988d71707ef.png">
 
 
-Regarding the hardware, you will need at least 4 of our positioning boards, because we need at least 3 anchors to achieve trilateration within a 2D dimension, and the other board can act as the tag which to be tracked. Please note that we currently only support maximum of 4 anchors and 8 tags.
+Regarding the hardware, you will need at least 4 of our positioning boards, because we need at least 3 anchors to achieve trilateration within a 2D dimension, and the other board can act as the tag which to be tracked. Please note that we currently only support maximum of 4 anchors and 8 tags, and 4 anchors have much better positioning quality than having 3 anchors due to the least squares algorithm we adopted.
 
 ## Position Board Introduction
 <img width="600" alt="biosim position board" src="https://user-images.githubusercontent.com/4184020/32562351-6f10fb82-c47c-11e7-986a-0bf4a30917f2.png">
