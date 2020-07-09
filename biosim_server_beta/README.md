@@ -5,6 +5,8 @@
 
 3. If you want to access the live game page from other computers within your local area network that is fine too, make sure you have a fairly modern browser (such as Google Chrome, Firefox, Safari, Microsoft Edge).
 
+5. XBee Coordinator configuration for AntSim: FunctionSet->802.15.4, 10ef, ID->4321, MY->A001, RR->6, RN->3, AP->1.
+
 ## Steps for running the BioSim Java server
 1. Start the server by double-click or open the server app.
 
