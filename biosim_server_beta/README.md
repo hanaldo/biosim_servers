@@ -15,6 +15,7 @@
 2. After that a window with a loading page will show the server is starting.
 
 3. After the live game page is shown, click the setting icon (<img width="24" alt="setting_button" src="https://user-images.githubusercontent.com/4184020/35249320-8b24163e-ff9f-11e7-96d1-e581775ab1d3.png"/>) and then go under "Server Control" tab, click "Connect XBee", then plug the XBee (ID: A001) module into your computer as prompted. Now your server is up and ready to talk to those puppets!
+- Please note: After you create a new game (from a game file), make sure you come to this setting again and click the "Connect XBee" button to let the server know the XBee module is still connected!
 
 <img width="300" alt="xbee prompt" src="https://user-images.githubusercontent.com/4184020/35751022-f9250f2a-0824-11e8-890a-49c40247de7d.png"><img width="300" alt="xbee prompt" src="https://user-images.githubusercontent.com/4184020/35751071-155756ee-0825-11e8-896e-7d9045efa628.png">
 
