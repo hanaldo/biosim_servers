@@ -24,7 +24,7 @@
 ## Stopping/restarting the BioSim Java server
 1. Simply close the app window or quit the app and then start the app again.
 
-## Steps for starting a BeeSim game
+## Steps for creating a new BeeSim game
 1. Click the setting icon (<img width="24" alt="setting_button" src="https://user-images.githubusercontent.com/4184020/35249320-8b24163e-ff9f-11e7-96d1-e581775ab1d3.png"/>), then click “Create game from file” button. Your file explorer will open, and you can choose desired game file to begin.
 
 2. Make sure all honey bee puppets are switched ON.
