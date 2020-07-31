@@ -37,7 +37,7 @@
 
 5. Once this is done for every passive device, click “start game.” Play will start right away.
 
-## Configuring a BeeSim game before start
+## Configuring a BeeSim game before creation
 1. An example game file in MS Excel format is provided. To start a game with the file you just need to click “Create game from file” button and choose this file.
 
 2. The first row in the game file is for defining some overall game properties. The "Space Width" item and the "Space Height" item are used to describe how big the game space is virtually. e.g. "5 width x 5 height" can be thought of a virtual squre space with 25 grids.
